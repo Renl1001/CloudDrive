@@ -1,0 +1,41 @@
+package com.clouddrive.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.clouddrive.biz.impl.LoginBizImpl;
+import com.clouddrive.entity.User;
+
+public class DoLogin extends HttpServlet {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
+		String userName = req.getParameter("userName");
+		String pwd = req.getParameter("pwd");
+		
+		LoginBizImpl loginBiz = new LoginBizImpl();
+		User user = loginBiz.login(userName, pwd);
+		
+		if(user == null) {
+			String message = "用户名不存在或密码错误！";
+			req.setAttribute("message", message);
+			req.getRequestDispatcher("login.jsp").forward(req, resp);
+		} else {
+			HttpSession session = req.getSession();
+			session.setAttribute("name", userName);
+			resp.sendRedirect("ListFileServlet");
+			//req.getRequestDispatcher("ListFileServlet").forward(req, resp);
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
+	}
+}

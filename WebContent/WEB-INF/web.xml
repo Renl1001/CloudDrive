@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>CloudDrive</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <resource-ref>
+	  <res-ref-name>jdbc/registration</res-ref-name>
+	  <res-type>javax.sql.DataSource</res-type>
+	  <res-auth>Container</res-auth>
+  </resource-ref>
+  
+  <servlet>
+  	<servlet-name>DoLogin</servlet-name>
+  	<servlet-class>com.clouddrive.servlet.DoLogin</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>DoLogin</servlet-name>
+  	<url-pattern>/DoLogin</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>CheckLogin</servlet-name>
+  	<servlet-class>com.clouddrive.servlet.CheckLogin</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>CheckLogin</servlet-name>
+  	<url-pattern>/CheckLogin</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>UpLoad</servlet-name>
+  	<servlet-class>com.clouddrive.servlet.UpLoad</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>UpLoad</servlet-name>
+  	<url-pattern>/UpLoad</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ListFiles</servlet-name>
+  	<servlet-class>com.clouddrive.servlet.ListFiles</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ListFiles</servlet-name>
+  	<url-pattern>/ListFiles</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>DownLoad</servlet-name>
+  	<servlet-class>com.clouddrive.servlet.DownLoad</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>DownLoad</servlet-name>
+  	<url-pattern>/DownLoad</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>DoLogout</servlet-name>
+  	<servlet-class>com.clouddrive.servlet.DoLogout</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>DoLogout</servlet-name>
+  	<url-pattern>/DoLogout</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>MkDir</servlet-name>
+  	<servlet-class>com.clouddrive.servlet.MkDir</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>MkDir</servlet-name>
+  	<url-pattern>/MkDir</url-pattern>
+  </servlet-mapping>
+</web-app>

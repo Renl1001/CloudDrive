@@ -1,0 +1,189 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	margin: 0 auto;
+	padding: 0;
+	background-color: #fdfcf8; 
+	/* background: #9ab1f5 url("../img/bk1.jpg") no-repeat top center fixed;*/
+}
+
+#wrapper{
+	margin: 0 auto;
+	padding: 0;
+	bottom: 0;
+	width: 1280px;
+	text-align: left;
+}
+
+header, footer{
+	height: 100px;
+	border:1px solid #cceff5;
+	background:#fafcfd
+}
+
+#logo{
+	float: left;
+	margin: 10px 50px 0 10px;
+}
+
+#logo img{
+	height: 80px;
+	width: 80px;		
+}
+
+#banner{
+	padding-top: 30px;
+}
+
+#banner h1 {
+	text-align: center;
+}
+
+hr{
+	clear: both;
+}
+
+div#container {
+	overflow: hidden;
+	margin-top: 10px;
+}
+
+div#sidebar {
+	float: left;
+	width: 190px;
+	border:1px solid #bbe1f1;
+	background:#eefaff
+}
+
+#bkgreen{
+	text-align: center;
+	background-color: #bbe1f1;
+}
+
+#bkgreen h3{
+	color: #a5b6c8
+}
+
+div#sidebar ul{
+	margin: 0;
+	padding: 0;
+}
+
+div#sidebar li{
+	list-style: none;
+	margin: 5px 0 0 0;
+	padding: 0;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	font-size: 14px;
+}
+
+div#sidebar a{
+	padding: 5px 0 5px 50px;
+	color: #000000;
+	text-decoration: none;
+	display: block;
+	font-size: 12px;
+	border: 0px solid #ddd;
+}
+
+div#main{
+	margin-left: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	float: left;
+	width: 1024px;
+	border: 1px solid #9bdf70;
+	background:#f0fbeb;
+}
+
+div#content{
+	margin-top: 20px;
+}
+
+div#content h2{
+	font-size: 18px;
+	color: 3f3f3f;
+}
+
+div#content .text{
+	/* margin: 0 0 0 25px; */
+	padding: 30px 0 30px 0;
+	border: 0;
+	border-bottom: 1px solid #aaa;
+}
+
+div#content p{
+	margin: 12px 0 0 0;
+	line-height: 150%;
+}
+
+footer{
+	margin-top: 10px;
+	text-align: center;
+	clear: both;
+}
+
+div#content table{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px dashed gray;
+	table-layout: fixed;
+}
+
+div#content table th{
+	font-size: 20px;
+	width: 390px;
+	border-bottom: 1px dashed gray;
+}
+
+div#content table td{
+	height: 44px;
+}
+
+div#content table tr th:first-child{
+	width: 32px;
+}
+
+div#content table a{
+	color: black;
+}
+
+.imgsize{
+	height: 200px;
+	width: 200px;		
+}
+
+.tr_even{
+	background-color:#EBF8FF
+}
+.tr_odd{
+	background-color:#DDECF3
+}
+.tr_hover{
+	background-color:#ffffcc
+}
+
+/* .background_white{
+	background-color: #ffffff;
+	opacity: 0.8;
+} */
+
+ul#menu li{
+	float: left;
+	margin-left: 15px;
+	list-style: none;
+}
+
+.gt{
+	color: #c5d8f3;
+	padding: 0 5px;
+}
+
+.pathText {
+	display: none;
+}

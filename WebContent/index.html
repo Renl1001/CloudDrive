@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CloudDrive</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="css/jquery-ui-1.9.2.custom.min.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</head>
+
+<body>
+	<div id="wrapper">
+		<header class="background_white">
+			<div id="logo">
+				<img src="img/logo.gif" alt="logo">
+			</div>
+			<div id="banner">
+				<h1>CloudDrive</h1>
+			</div>
+		</header>
+
+		<div id="container">
+			<div id="sidebar" class="background_white">
+				<div id="bkgreen">
+					<h3>Sidebar</h3>
+				</div>
+				<ul>
+					<li><a href="#">全部文件</a></li>
+					<li><a href="#">图片</a></li>
+					<li><a href="#">文档</a></li>
+					<li><a href="#">视频</a></li>
+					<li><a href="#">音乐</a></li>
+					<li><a href="#">其他</a></li>
+				</ul>
+			</div>
+			<div id="main" class="background_white">
+				<div id="menudiv">
+					<ul id="menu">
+						<li><button>上传</button></li>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    	新建文件夹
+    </button>
+    <!-- 模态框 -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">新建文件夹</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    <form action="">
+                    	<input type="text" class="form-control" id="name" placeholder="请输入文件夹名">
+
+                    	
+                    </form>
+                </div>
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                	<button type="submit" class="btn btn-primary">确定</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+					</ul>
+				</div>
+				<div id='dialog-modal'></div>
+				<hr>
+				<div id="content">
+					<table>
+						<thead>
+							<tr>
+								<th><input id="CheckAll" type="checkbox" /></th>
+								<th>文件名</th>
+								<th>大小</th>
+								<th>修改日期</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input name="subBox" type="checkbox" /></td>
+								<td>000.第0章.课程介绍.pptx</td>
+								<td>392KB</td>
+								<td>2017-10-08</td>
+							</tr>
+							<tr>
+								<td><input name="subBox" type="checkbox" /></td>
+								<td>000.第0章.课程介绍.pptx</td>
+								<td>392KB</td>
+								<td>2017-10-08</td>
+							</tr>
+							<tr>
+								<td><input name="subBox" type="checkbox" /></td>
+								<td>000.第0章.课程介绍.pptx</td>
+								<td>392KB</td>
+								<td>2017-10-08</td>
+							</tr>
+							<tr>
+								<td><input name="subBox" type="checkbox" /></td>
+								<td>000.第0章.课程介绍.pptx</td>
+								<td>392KB</td>
+								<td>2017-10-08</td>
+							</tr>
+							<tr>
+								<td><input name="subBox" type="checkbox" /></td>
+								<td>000.第0章.课程介绍.pptx</td>
+								<td>392KB</td>
+								<td>2017-10-08</td>
+							</tr>
+							<tr>
+								<td><input name="subBox" type="checkbox" /></td>
+								<td>000.第0章.课程介绍.pptx</td>
+								<td>392KB</td>
+								<td>2017-10-08</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<footer class="background_white">
+			<h4>All Copyright Reserved ©2017 ACM</h4>
+			<label id="time"></label>
+		</footer>
+	</div>
+</body>
+</html>
