@@ -11,30 +11,35 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public abstract class BaseDao {
-	protected Connection conn;
-	protected PreparedStatement pstmt;
-	protected ResultSet rs;
+	public static String sqlDialect;
+	public static String dataSource;
 	
 	/**
 	 * 获取数据库连接对象。
 	 */
 	public Connection getConnection() {
 		Connection conn = null;// 数据连接对象
+		Context ctx = null;
 		// 获取连接并捕获异常
 		try {
-			Context initContext = new InitialContext();
-			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/registration");
+			ctx = new InitialContext();
+			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/" + dataSource);
 			conn = ds.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();// 异常处理
 		}
 		return conn;// 返回连接对象
 	}
+	
 	/**
 	 * 关闭数据库连接。
-	 * @param conn 数据库连接
-	 * @param stmt Statement对象
-	 * @param rs 结果集
+	 * 
+	 * @param conn
+	 *            数据库连接
+	 * @param stmt
+	 *            Statement对象
+	 * @param rs
+	 *            结果集
 	 */
 	public void closeAll(Connection conn, Statement stmt, ResultSet rs) {
 		// 若结果集对象不为空，则关闭
@@ -62,53 +67,65 @@ public abstract class BaseDao {
 			}
 		}
 	}
-	
-	public void closeAll() {
-		closeAll(this.conn, this.pstmt, this.rs);
+
+	public void closeAll(Connection conn, Statement stmt) {
+		closeAll(conn, stmt, null);
 	}
-	
+
 	/**
-	 * 增、删、改、作
-	 * @param sql sql语句
-	 * @param params 参数数组
+	 * 增、删、改操作
+	 * 
+	 * @param sql
+	 *            sql语句
+	 * @param params
+	 *            参数数组
 	 * @return 执行结果
 	 */
-	public int exceuteUpdate(String sql, Object...params){
+	public int executeUpdate(String sql, Object... params) {
 		int result = 0;
-		conn = this.getConnection();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
 		try {
-			if(conn != null && conn.isClosed() == false) {
+			conn = this.getConnection();
+			if (conn != null && !conn.isClosed()) {
 				pstmt = conn.prepareStatement(sql);
-				for(int i = 0;i < params.length;i++){
-					pstmt.setObject(i + 1, params[i]);	
+				if(params != null) {
+					for (int i = 0; i < params.length; i++) {
+						pstmt.setObject(i + 1, params[i]);
+					}
 				}
 				result = pstmt.executeUpdate();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
-			closeAll();
+		} finally {
+			closeAll(conn, pstmt);
 		}
-		
 		return result;
 	}
-	
-	public Object executeQuery(RSProcessor processor, String sql, Object...params) {
+
+	public Object executeQuery(RSProcessor processor, String sql,
+			Object... params) {
 		Object result = null;
-		conn = this.getConnection();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			if(conn != null && conn.isClosed() == false) {
+			conn = this.getConnection();
+			if (conn != null && conn.isClosed() == false) {
 				pstmt = conn.prepareStatement(sql);
-				for(int i = 0;i < params.length;i++){
-					pstmt.setObject(i + 1, params[i]);	
+				if(params != null) {
+					for (int i = 0; i < params.length; i++) {
+						pstmt.setObject(i + 1, params[i]);
+					}
 				}
 				rs = pstmt.executeQuery();
 				result = processor.process(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
-			closeAll();
+		} finally {
+			closeAll(conn, pstmt, rs);
 		}
 		return result;
 	}

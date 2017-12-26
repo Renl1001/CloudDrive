@@ -46,6 +46,6 @@ public class FileDaoImpl extends BaseDao implements FileDao {
 		System.out.println("yes");
 		String sql = "insert file (fileName,uuidName,updateTime,type,path,user,size) values(?,?,?,?,?,?,?)";
 		Object[] params = { file.getFileName(), file.getUuidName(), file.getUpdateTime(),file.getType(), file.getPath(), file.getUser(), file.getSize() };
-		return this.exceuteUpdate(sql, params);
+		return this.executeUpdate(sql, params);
 	}
 }

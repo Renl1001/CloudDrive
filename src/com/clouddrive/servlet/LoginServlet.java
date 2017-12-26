@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.clouddrive.biz.impl.LoginBizImpl;
 import com.clouddrive.entity.User;
 
-public class DoLogin extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -19,17 +19,21 @@ public class DoLogin extends HttpServlet {
 		String userName = req.getParameter("userName");
 		String pwd = req.getParameter("pwd");
 		
+		System.out.println("doLogin");
+		System.out.println("userName:"+userName);
+		System.out.println("password"+pwd);
+		
 		LoginBizImpl loginBiz = new LoginBizImpl();
 		User user = loginBiz.login(userName, pwd);
 		
 		if(user == null) {
 			String message = "用户名不存在或密码错误！";
 			req.setAttribute("message", message);
-			req.getRequestDispatcher("login.jsp").forward(req, resp);
+			req.getRequestDispatcher("/home.jsp").forward(req, resp);
 		} else {
 			HttpSession session = req.getSession();
 			session.setAttribute("name", userName);
-			resp.sendRedirect("ListFileServlet");
+			resp.sendRedirect("ListFiles");
 			//req.getRequestDispatcher("ListFileServlet").forward(req, resp);
 		}
 	}

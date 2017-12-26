@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,9 +18,11 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.clouddrive.dao.impl.FileDaoImpl;
+import com.clouddrive.entity.CurrentTime;
 import com.clouddrive.entity.FileMessage;
 
-public class UpLoad extends HttpServlet {
+@SuppressWarnings("serial")
+public class UpLoadServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -91,9 +91,8 @@ public class UpLoad extends HttpServlet {
 					System.out.println("文件上传成功!");
 					System.out.println("文件大小："+fileSize);
 					String type = "document";
-					Date date = new Date();
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-					String updateTime = format.format(date);
+					
+					String updateTime = new CurrentTime().getDateString();
 					FileMessage fileMessage = new FileMessage(fileName, uuidName, updateTime, type, savePath, userName, fileSize);
 					
 					FileDaoImpl fileDaoImpl = new FileDaoImpl();

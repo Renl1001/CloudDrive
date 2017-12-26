@@ -60,6 +60,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		return (User) this.executeQuery(getUserByNameProcessor, sql, params);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<User> findUsersByName(String name) {
 		String sql = "select * from user where userName = ?";
@@ -90,7 +91,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	public int insert(User user) {
 		String sql = "insert user (userName, pwd) values(?,?)";
 		Object[] params = { user.getUserName(), user.getPwd() };
-		return this.exceuteUpdate(sql, params);
+		return this.executeUpdate(sql, params);
 	}
 
 }

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.clouddrive.dao.impl.FileDaoImpl;
 import com.clouddrive.entity.FileMessage;
 
-public class MkDir extends HttpServlet {
+public class MkDirServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");

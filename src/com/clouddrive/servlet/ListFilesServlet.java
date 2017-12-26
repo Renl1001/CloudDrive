@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.clouddrive.dao.impl.FileDaoImpl;
 import com.clouddrive.entity.FileMessage;
 
-public class ListFiles extends HttpServlet {
+public class ListFilesServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -33,7 +33,8 @@ public class ListFiles extends HttpServlet {
 		}
 		String userName = (String)session.getAttribute("name");
 		if(userName == null) {
-			resp.sendRedirect("login.jsp");
+			resp.sendRedirect("home.jsp");
+			return;
 		}
 		String uploadFilePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
 		System.out.println(uploadFilePath);
@@ -58,7 +59,7 @@ public class ListFiles extends HttpServlet {
 		req.setAttribute("files", files);
 		req.setAttribute("paths", paths);
 		req.setAttribute("path", path);
-		req.getRequestDispatcher("/index.jsp").forward(req, resp);
+		req.getRequestDispatcher("/auth/drive.jsp").forward(req, resp);
 	}
 	
 	String getLastPath(String pathNames[]) {
