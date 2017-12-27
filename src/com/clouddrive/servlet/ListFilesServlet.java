@@ -1,7 +1,6 @@
 package com.clouddrive.servlet;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -36,8 +35,34 @@ public class ListFilesServlet extends HttpServlet {
 			resp.sendRedirect("home.jsp");
 			return;
 		}
+		
 		String uploadFilePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
+		String types[] = {"image", "document", "video", "music", "other"};
+		
+		for (String type:types) {
+			if(path.equals(type)) {
+				// 存储要下载的文件名
+				FileDaoImpl fileDaoImpl = new FileDaoImpl();
+				Vector<FileMessage> files;
+				if(type.equals("document")) {
+					files = fileDaoImpl.findFilesByType("doc");
+					for (FileMessage file:fileDaoImpl.findFilesByType("xls")) {
+						files.add(file);
+					}
+					for (FileMessage file:fileDaoImpl.findFilesByType("ppt")) {
+						files.add(file);
+					}
+				} else {
+					files = fileDaoImpl.findFilesByType(path);
+				}
+				req.setAttribute("files", files);
+				req.setAttribute("path", path);
+				req.getRequestDispatcher("/auth/drive.jsp").forward(req, resp);
+				return ;
+			}
+		}
 		System.out.println("ListFiles:");
+//		System.out.println(uploadFilePath);
 		System.out.println("path:");
 		System.out.println(path);
 		// 存储要下载的文件名

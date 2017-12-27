@@ -10,6 +10,7 @@ public class Share {
 	private int downloads;
 	private long size;
 	private String type;
+	private String showSize;
 	
 	public Share(String user, String uuidName, String url, String shareTime, String key, int downloads, long size) {
 		super();
@@ -22,6 +23,13 @@ public class Share {
 		this.downloads = downloads;
 		this.size = size;
 		this.type = Type.getType(this.fileName);
+		this.showSize = Conversion.conversion(size);
+	}
+	public String getShowSize() {
+		return showSize;
+	}
+	public void setShowSize(String showSize) {
+		this.showSize = showSize;
 	}
 	public String getType() {
 		return type;

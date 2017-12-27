@@ -40,6 +40,13 @@
 					alert('复制成功');
 				}
 			});
+			$("#sidebar").children().each(function() {
+				if($(this).hasClass("${path }")) {
+					$(this).addClass("list-group-item-info");
+				} else {
+					$(this).addClass("list-group-item-action");
+				}
+			})
 		})
 		function handleShowLink(data) {
 			$("#linkText").val(data);
@@ -87,106 +94,59 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-2">
-				<div class="list-group">
-					<c:url value="/ListFiles" var="pathURL">
-						<c:param name="path" value="root"></c:param>
-					</c:url>
-					<a href="${pathURL }" class="list-group-item list-group-item-info">全部文件</a>
-					<c:url value="/ListFiles" var="pathURL">
-						<c:param name="path" value="photo"></c:param>
-					</c:url>
-					<a href="${pathURL }" class="list-group-item list-group-item-action">图片</a>
-					<a href="#" class="list-group-item list-group-item-action">文档</a>
-					<a href="#" class="list-group-item list-group-item-action">视频</a>
-					<a href="#" class="list-group-item list-group-item-action">音乐</a>
-					<a href="#" class="list-group-item list-group-item-action">其他</a>
+				<div class="list-group" id="sidebar">
+					<a href="ListFiles?path=root" class="list-group-item root" >全部文件</a>
+					<a href="ListFiles?path=image" class="list-group-item image">图片</a>
+					<a href="ListFiles?path=document" class="list-group-item document">文档</a>
+					<a href="ListFiles?path=video" class="list-group-item video">视频</a>
+					<a href="ListFiles?path=music" class="list-group-item music">音乐</a>
+					<a href="ListFiles?path=other" class="list-group-item other">其他</a>
 				</div>
 			</div>
 			<div class="card col-sm-10">
 				<div class="card-body">
-					<div id="menudiv">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-							<i class="fa fa-cloud-upload"></i> 文件上传
-						</button>
-						<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#newFolder">
-							<i class="fa fa-folder-o fa-lg"></i> 新建文件夹
-						</button>
-						<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-lg" role="document">
-								<div class="modal-content">
-									<form action="UpLoad" id="upLoadForm" enctype="multipart/form-data" method="post">
-										<div class="modal-header">
-											<h5 class="modal-title" id="uploadModalLabel">文件上传</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<input type="text" class="pathText" name="path" value="${path }">
-											<div class="file-loading">
-												<input type="file" name="txt_file" id="uploadFile" />
-											</div>
-											<div id="kartik-file-errors"></div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-											<button type="submit" class="btn btn-primary" title="上传">上传</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal fade" id="newFolder">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<form role="form" action="MkDir" method="post">
-									<div class="modal-header">
-										<h4 class="modal-title">新建文件夹</h4>
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-									</div>
-								
-									<div class="modal-body">
-										<input type="text" class="form-control" name="folderName" id="name" placeholder="请输入文件夹名">
-										<input type="text" class="pathText" name="path" value="${path }">
-									</div>
-	
-									<div class="modal-footer">
-										<input type="submit" class="btn btn-info" value="提交按钮">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-
-					<ul class="breadcrumb">
-						<c:if test="${lastPath != \"\"}">
-							<c:url value="/ListFiles" var="folderURL">
-								<c:param name="path" value="${lastPath }"></c:param>
-							</c:url>
-							<a href="${folderURL}">返回上一级</a>
-							<span class="gt">|</span>
-						</c:if>
+					<c:choose>
+						<c:when test="${empty paths }">
+							${path }
+						</c:when>
 						
-						<c:forEach var="ml" items="${paths }">
-							<c:choose>
-								<c:when test="${ml.key == \"root\" }">
-									<c:url value="/ListFiles" var="folderURL">
-										<c:param name="path" value="${ml.value }"></c:param>
-									</c:url>
-									<a href="${folderURL }">全部文件</a>
-								</c:when>
-								<c:otherwise>
-									<span class="gt">></span>
-									<c:url value="/ListFiles" var="folderURL">
-										<c:param name="path" value="${ml.value }"></c:param>
-									</c:url>
-									<a href="${folderURL }">${ml.key }</a>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-					</ul>
+						<c:otherwise>
+							<div id="menudiv">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+									<i class="fa fa-cloud-upload"></i> 文件上传
+								</button>
+								<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#newFolder">
+									<i class="fa fa-folder-o fa-lg"></i> 新建文件夹
+								</button>
+								
+							</div>
+							<ul class="breadcrumb">
+								<c:if test="${lastPath != \"\"}">
+									<a href="/ListFiles?path=${lastPath }">返回上一级</a>
+									<span class="gt">|</span>
+								</c:if>
+								
+								<c:forEach var="ml" items="${paths }">
+									<c:choose>
+										<c:when test="${ml.key == \"root\" }">
+											<c:url value="/ListFiles" var="folderURL">
+												<c:param name="path" value="${ml.value }"></c:param>
+											</c:url>
+											<a href="${folderURL }">全部文件</a>
+										</c:when>
+										<c:otherwise>
+											<span class="gt">></span>
+											<c:url value="/ListFiles" var="folderURL">
+												<c:param name="path" value="${ml.value }"></c:param>
+											</c:url>
+											<a href="${folderURL }">${ml.key }</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</ul>
+						</c:otherwise>
+					</c:choose>
+							
 
 					<table class="table table-hover">
 						<thead>
@@ -232,7 +192,7 @@
 												<a href="${downLoadURL }"><i class="fa fa-download fa-lg"></i></a>  
 												<a href="javascript:void(0);" class="share" url="${shareURL }"><i class="fa fa-share-alt fa-lg"></i></a>
 											</td>
-											<td>${file.size/1024 } KB</td>
+											<td>${file.showSize }</td>
 										</c:otherwise>
 									</c:choose>
 									
@@ -242,6 +202,57 @@
 						</tbody>
 					</table>
 				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 文件上传 -->
+	<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<form action="UpLoad" id="upLoadForm" enctype="multipart/form-data" method="post">
+					<div class="modal-header">
+						<h5 class="modal-title" id="uploadModalLabel">文件上传</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="pathText" name="path" value="${path }">
+						<div class="file-loading">
+							<input type="file" name="txt_file" id="uploadFile" />
+						</div>
+						<div id="kartik-file-errors"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+						<button type="submit" class="btn btn-primary" title="上传">上传</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 新建文件夹 -->
+	<div class="modal fade" id="newFolder">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form role="form" action="MkDir" method="post">
+					<div class="modal-header">
+						<h4 class="modal-title">新建文件夹</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+				
+					<div class="modal-body">
+						<input type="text" class="form-control" name="folderName" id="name" placeholder="请输入文件夹名">
+						<input type="text" class="pathText" name="path" value="${path }">
+					</div>
+
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-info" value="提交按钮">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

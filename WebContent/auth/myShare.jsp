@@ -94,7 +94,7 @@
 									<a href="${delURL }"><i class="fa fa-ban fa-lg"></i></a>
 								</td>
 								<td>${share.downloads }</td>
-								<td>${share.size/1024 } KB</td>
+								<td>${share.showSize }</td>
 								<td>${share.shareTime }</td>
 							</tr>
 						</c:forEach>

@@ -48,4 +48,33 @@ public class FileDaoImpl extends BaseDao implements FileDao {
 		Object[] params = { file.getFileName(), file.getUuidName(), file.getUpdateTime(),file.getType(), file.getPath(), file.getUser(), file.getSize() };
 		return this.executeUpdate(sql, params);
 	}
+
+	@Override
+	public Vector<FileMessage> findFilesByType(String type) {
+		String sql = "select * from file where type = ? order by updateTime desc";
+		Object[] params = { type };
+
+		RSProcessor getUsersByNameProcessor = new RSProcessor() {
+
+			public Object process(ResultSet rs) throws SQLException {
+				Vector<FileMessage> files = new Vector<FileMessage>();
+
+				while (rs.next()) {
+					String fileName = rs.getString("fileName");
+					String uuidName = rs.getString("uuidName");
+					String updateTime = rs.getString("updateTime");
+					String type = rs.getString("type");
+					String path = rs.getString("path");
+					String user = rs.getString("user");
+					long size = rs.getLong("size");
+					
+					FileMessage fileMessage = new FileMessage(fileName, uuidName, updateTime, type, path, user, size);
+					files.add(fileMessage);
+				}
+				return files;
+			}
+		};
+
+		return (Vector<FileMessage>) this.executeQuery(getUsersByNameProcessor, sql, params);
+	}
 }

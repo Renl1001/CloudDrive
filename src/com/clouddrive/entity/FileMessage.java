@@ -8,7 +8,8 @@ public class FileMessage {
 	private String path = "";
 	private String user = "";
 	private long size = 0;
-	
+	private String showSize;
+	// 构造文件
 	public FileMessage(String fileName, String uuidName, String updateTime, String type, String path, String user,
 			long size) {
 		super();
@@ -19,8 +20,9 @@ public class FileMessage {
 		this.path = path;
 		this.user = user;
 		this.size = size;
+		showSize = Conversion.conversion(size);
 	}
-	
+	// 构造文件夹
 	public FileMessage(String fileName, String updateTime, String type, String path, String user) {
 		super();
 		this.fileName = fileName;
@@ -29,7 +31,7 @@ public class FileMessage {
 		this.path = path;
 		this.user = user;
 	}
-	
+
 	public String getFileName() {
 		return fileName;
 	}
