@@ -9,13 +9,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>CloudDrive</title>
-	<link rel="stylesheet" type="text/css" href="/CloudDrive/css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet"
         type="text/css" />
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery.zclip.js" type="text/javascript"></script>
+	<script src="js/ajax.js"></script>
 
     <script src="js/fileinput.min.js" type="text/javascript"></script>
     <script src="themes/fa/theme.js" type="text/javascript"></script>
@@ -24,6 +26,27 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <script src="js/locales/zh.js" type="text/javascript"></script>
+   	<script type="text/javascript">
+		$(function() {
+			$(".share").click(function() {
+				$.get($(this).attr("url"), {}, handleShowLink);
+			})
+			$("#copyLink").zclip({
+				path: "js/ZeroClipboard.swf",
+				copy: function() { // 复制
+					return $("#linkText").val();
+				},
+				afterCopy: function() {
+					alert('复制成功');
+				}
+			});
+		})
+		function handleShowLink(data) {
+			$("#linkText").val(data);
+			$("#shareModal").modal("show");
+		}
+
+	</script>
 </head>
 
 <body>
@@ -38,10 +61,10 @@
 					<a class="nav-link" href="home.jsp">首页</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link nav-current" href="#">网盘</a>
+					<a class="nav-link nav-current" href="ListFiles">网盘</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">分享</a>
+					<a class="nav-link" href="ShareManage">分享</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">收件夹</a>
@@ -170,6 +193,7 @@
 							<tr>
 								<th><input id="CheckAll" type="checkbox" /></th>
 								<th>文件名</th>
+								<th>  </th>
 								<th>大小</th>
 								<th>修改日期</th>
 							</tr>
@@ -186,6 +210,7 @@
 											<td>
 												<a href="${folderURL}" class="fileName">${file.fileName}</a>
 											</td>
+											<td> </td>
 											<td>-</td>
 										</c:when>
 										<c:otherwise>
@@ -193,14 +218,17 @@
 												<c:param name="fileName" value="${file.uuidName}"></c:param>
 												<c:param name="path" value="${path }"></c:param>
 											</c:url>
-											<c:url value="/Share" var="shareURL">
+											<c:url value="/ShareFile" var="shareURL">
 												<c:param name="fileName" value="${file.uuidName}"></c:param>
 												<c:param name="path" value="${path }"></c:param>
+												<c:param name="size">${file.size }</c:param>
 											</c:url>
 											<td>
 												<a href="${downLoadURL}" class="fileName">${file.fileName}</a>&nbsp&nbsp
-												<a href="${downLoadURL}"><i class="fa fa-download fa-lg"></i></a>  
-												<a href="${shareURL }"><i class="fa fa-share-alt fa-lg"></i></a>
+											</td>
+											<td>
+												<a href="${downLoadURL }"><i class="fa fa-download fa-lg"></i></a>  
+												<a href="javascript:void(0);" class="share" url="${shareURL }"><i class="fa fa-share-alt fa-lg"></i></a>
 											</td>
 											<td>${file.size/1024 } KB</td>
 										</c:otherwise>
@@ -215,10 +243,45 @@
 			</div>
 		</div>
 	</div>
-	<footer>
-		<div class="container">
-			<h4>All Copyright Reserved ©2017 ACM</h4>
+	
+	<!-- 显示分享链接 -->
+    <div class="modal fade" id="shareModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- 模态框头部 -->
+				<div class="modal-header">
+					<h4 class="modal-title">分享</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- 模态框主体 -->
+				<div class="modal-body">
+					<p class="text-primary">成功创建分享链接</p>
+					<div class="row">
+						<div class="col-sm-9">
+							<input type="text" id="linkText" class="form-control">
+						</div>
+						<div class="col-sm-3">
+							<button type="button" id="copyLink" class="btn btn-primary">复制链接</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9">
+							<p class="text-muted">可以将链接发送给你的QQ等好友</p>
+						</div>
+						<div class="col-sm-3">
+							<div class="alert alert-success">
+								<!-- <strong>成功!</strong> 指定操作成功提示信息。 -->
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<!-- 模态框底部 -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-primary" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
 		</div>
-	</footer>
+	</div>
 </body>
 </html>

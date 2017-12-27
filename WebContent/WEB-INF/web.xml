@@ -9,7 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
     <servlet-name>InitServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.InitServlet</servlet-class>
@@ -23,7 +22,6 @@
     <param-name>data_source</param-name>
     <param-value>clouddrive</param-value>
   </context-param>
-  
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.LoginServlet</servlet-class>
@@ -32,7 +30,6 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/DoLogin</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UpLoadServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.UpLoadServlet</servlet-class>
@@ -41,7 +38,6 @@
     <servlet-name>UpLoadServlet</servlet-name>
     <url-pattern>/UpLoad</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ListFilesServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.ListFilesServlet</servlet-class>
@@ -50,7 +46,6 @@
     <servlet-name>ListFilesServlet</servlet-name>
     <url-pattern>/ListFiles</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>DownLoadServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.DownLoadServlet</servlet-class>
@@ -59,7 +54,6 @@
     <servlet-name>DownLoadServlet</servlet-name>
     <url-pattern>/DownLoad</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>LogoutServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.LogoutServlet</servlet-class>
@@ -68,7 +62,6 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/DoLogout</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>MkDirServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.MkDirServlet</servlet-class>
@@ -77,7 +70,6 @@
     <servlet-name>MkDirServlet</servlet-name>
     <url-pattern>/MkDir</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ShareFileServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.ShareFileServlet</servlet-class>
@@ -86,20 +78,45 @@
     <servlet-name>ShareFileServlet</servlet-name>
     <url-pattern>/ShareFile</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ShareServlet</servlet-name>
+    <servlet-class>com.clouddrive.servlet.ShareServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShareServlet</servlet-name>
+    <url-pattern>/Share</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ShareListServlet</servlet-name>
+    <servlet-class>com.clouddrive.servlet.ShareListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShareListServlet</servlet-name>
+    <url-pattern>/ShareManage</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>DelShareServlet</servlet-name>
+    <servlet-class>com.clouddrive.servlet.DelShareServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelShareServlet</servlet-name>
+    <url-pattern>/DelShare</url-pattern>
+  </servlet-mapping>
   
   <filter>
-  	<filter-name>loginFilter</filter-name>
-  	<filter-class>com.clouddrive.filter.LoginFilter</filter-class>
-  	<init-param>
-  		<param-name>LOGIN_PATH</param-name>
-  		<param-value>/CloudDrive/home.jsp</param-value>
-  	</init-param>
+    <filter-name>loginFilter</filter-name>
+    <filter-class>com.clouddrive.filter.LoginFilter</filter-class>
+    <init-param>
+      <param-name>LOGIN_PATH</param-name>
+      <param-value>/CloudDrive/home.jsp</param-value>
+    </init-param>
   </filter>
   <filter-mapping>
-  	<filter-name>loginFilter</filter-name>
-  	<url-pattern>/auth/*</url-pattern>
+    <filter-name>loginFilter</filter-name>
+    <url-pattern>/auth/*</url-pattern>
   </filter-mapping>
-  
   <resource-ref>
     <res-ref-name>jdbc/clouddrive</res-ref-name>
     <res-auth>Container</res-auth>

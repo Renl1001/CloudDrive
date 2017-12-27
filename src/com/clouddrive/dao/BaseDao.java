@@ -94,6 +94,7 @@ public abstract class BaseDao {
 						pstmt.setObject(i + 1, params[i]);
 					}
 				}
+				//System.out.println(pstmt);
 				result = pstmt.executeUpdate();
 			}
 		} catch (SQLException e) {
@@ -119,6 +120,7 @@ public abstract class BaseDao {
 						pstmt.setObject(i + 1, params[i]);
 					}
 				}
+//				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				result = processor.process(rs);
 			}

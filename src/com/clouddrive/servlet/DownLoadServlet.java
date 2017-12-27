@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.clouddrive.dao.impl.ShareDaoImpl;
+
 public class DownLoadServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,11 +22,20 @@ public class DownLoadServlet extends HttpServlet {
 		String userName = (String)session.getAttribute("name");
 		String fileName = req.getParameter("fileName");
 		String path = req.getParameter("path");
-		System.out.println("path:"+path);
-		System.out.println("下载的文件名："+fileName);
-		String fileSaveRootPath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"\\"+path);
+		String url = req.getParameter("url");
 		
-		File file = new File(fileSaveRootPath+"\\"+fileName);
+		if(url == null) {
+			System.out.println("path:"+path);
+			System.out.println("下载的文件名："+fileName);
+			String fileSaveRootPath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"\\"+path);
+			url = fileSaveRootPath+"\\"+fileName;
+		} else {
+			System.out.println("下载分享文件");
+			String key = req.getParameter("key");
+			ShareDaoImpl shareDaoImpl = new ShareDaoImpl();
+			shareDaoImpl.updateDownloadByKey(key);
+		}
+		File file = new File(url);
 		if(!file.exists()) {
 			req.setAttribute("message", "资源已被删除");
 			req.getRequestDispatcher("/message.jsp").forward(req, resp);
@@ -33,7 +44,7 @@ public class DownLoadServlet extends HttpServlet {
 		String realName = fileName.substring(fileName.indexOf("_")+1);
 		resp.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(realName, "UTF-8"));
 		
-		FileInputStream in = new FileInputStream(fileSaveRootPath+"\\" + fileName);
+		FileInputStream in = new FileInputStream(url);
 		OutputStream out = resp.getOutputStream();
 		
 		byte buffer[] = new byte[1024];

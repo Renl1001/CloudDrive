@@ -31,13 +31,13 @@
 			</a>
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link nav-current" href="#">首页</a>
+					<a class="nav-link nav-current" href="home.jsp">首页</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="ListFiles">网盘</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">分享</a>
+					<a class="nav-link" href="ShareManage">分享</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">收件夹</a>

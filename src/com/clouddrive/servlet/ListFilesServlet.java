@@ -42,14 +42,6 @@ public class ListFilesServlet extends HttpServlet {
 		FileDaoImpl fileDaoImpl = new FileDaoImpl();
 		Vector<FileMessage> files = fileDaoImpl.findFilesByPath(uploadFilePath); 
 		
-		// TODO 直接从文件中读取（后面要改成数据库读取）
-		/*File folder = new File(uploadFilePath);
-		File files[] = folder.listFiles();
-		for(File file : files) {
-			System.out.println(file.getName());
-			String realName = file.getName().substring(file.getName().indexOf("_")+1);
-			fileNameMap.put(file.getName(), realName);
-		}*/
 		Map<String, String> paths = new LinkedHashMap<>();
 		String pathNames[] = path.split("/");
 		createPaths(paths, pathNames);

@@ -3,16 +3,41 @@ package com.clouddrive.entity;
 public class Share {
 	private String user;
 	private String fileName;
+	private String uuidName;
 	private String url;
 	private String shareTime;
 	private String key;
-	public Share(String user, String fileName, String url, String shareTime, String key) {
+	private int downloads;
+	private long size;
+	
+	public Share(String user, String uuidName, String url, String shareTime, String key, int downloads, long size) {
 		super();
 		this.user = user;
-		this.fileName = fileName;
+		this.uuidName = uuidName;
+		this.fileName = uuidName.substring(uuidName.indexOf("_")+1);
 		this.url = url;
 		this.shareTime = shareTime;
 		this.key = key;
+		this.downloads = downloads;
+		this.size = size;
+	}
+	public String getUuidName() {
+		return uuidName;
+	}
+	public void setUuidName(String uuidName) {
+		this.uuidName = uuidName;
+	}
+	public int getDownloads() {
+		return downloads;
+	}
+	public void setDownloads(int downloads) {
+		this.downloads = downloads;
+	}
+	public long getSize() {
+		return size;
+	}
+	public void setSize(long size) {
+		this.size = size;
 	}
 	public String getUser() {
 		return user;
