@@ -20,6 +20,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.clouddrive.dao.impl.FileDaoImpl;
 import com.clouddrive.entity.CurrentTime;
 import com.clouddrive.entity.FileMessage;
+import com.clouddrive.entity.Type;
 
 @SuppressWarnings("serial")
 public class UpLoadServlet extends HttpServlet {
@@ -90,7 +91,7 @@ public class UpLoadServlet extends HttpServlet {
 					message = "文件上传成功!";
 					System.out.println("文件上传成功!");
 					System.out.println("文件大小："+fileSize);
-					String type = "document";
+					String type = Type.getType(fileName);
 					
 					String updateTime = new CurrentTime().getDateString();
 					FileMessage fileMessage = new FileMessage(fileName, uuidName, updateTime, type, savePath, userName, fileSize);

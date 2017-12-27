@@ -87,6 +87,7 @@
 									<c:param name="key" value="${share.key}"></c:param>
 								</c:url>
 								<td>
+									<img src="img/icon/${share.type }.png" alt="logo" style="width:25px;">
 									<a href="Share?key=${share.key }" class="fileName">${share.fileName}</a>&nbsp&nbsp
 								</td>
 								<td>  

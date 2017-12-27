@@ -208,6 +208,7 @@
 												<c:param name="path" value="${path}/${file.fileName }"></c:param>
 											</c:url>
 											<td>
+												<img src="img/icon/${file.type }.png" alt="logo" style="width:25px;">
 												<a href="${folderURL}" class="fileName">${file.fileName}</a>
 											</td>
 											<td> </td>
@@ -224,6 +225,7 @@
 												<c:param name="size">${file.size }</c:param>
 											</c:url>
 											<td>
+												<img src="img/icon/${file.type }.png" alt="logo" style="width:25px;">
 												<a href="${downLoadURL}" class="fileName">${file.fileName}</a>&nbsp&nbsp
 											</td>
 											<td>

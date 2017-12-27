@@ -9,6 +9,7 @@ public class Share {
 	private String key;
 	private int downloads;
 	private long size;
+	private String type;
 	
 	public Share(String user, String uuidName, String url, String shareTime, String key, int downloads, long size) {
 		super();
@@ -20,6 +21,13 @@ public class Share {
 		this.key = key;
 		this.downloads = downloads;
 		this.size = size;
+		this.type = Type.getType(this.fileName);
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	public String getUuidName() {
 		return uuidName;

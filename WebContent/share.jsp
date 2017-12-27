@@ -102,7 +102,7 @@
 								</a>
 								<div class="row">
 									<div class="card col-sm-2">
-										<img src="img/logo.gif" alt="logo" style="width:40px;"> 
+										<img src="img/icon/${share.type }.png" alt="logo" style="width:80px;"> 
 									</div>	
 									<div class="card col-sm-10">
 										<div class="row">

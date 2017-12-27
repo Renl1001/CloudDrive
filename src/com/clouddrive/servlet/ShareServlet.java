@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.clouddrive.dao.impl.ShareDaoImpl;
 import com.clouddrive.entity.Share;
+import com.clouddrive.entity.Type;
 
 /**
  * Servlet implementation class ShareServlet
@@ -28,6 +29,8 @@ public class ShareServlet extends HttpServlet {
 		
 		ShareDaoImpl shareImpl = new ShareDaoImpl();
 		Share share = shareImpl.findShareByKey(key);
+		String fileName = share.getFileName();
+		String type = Type.getType(fileName);
 		
 		req.setAttribute("share", share);
 		req.getRequestDispatcher("share.jsp").forward(req, resp);

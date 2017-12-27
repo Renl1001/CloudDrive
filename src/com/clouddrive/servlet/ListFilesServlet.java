@@ -37,7 +37,9 @@ public class ListFilesServlet extends HttpServlet {
 			return;
 		}
 		String uploadFilePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
-		System.out.println(uploadFilePath);
+		System.out.println("ListFiles:");
+		System.out.println("path:");
+		System.out.println(path);
 		// 存储要下载的文件名
 		FileDaoImpl fileDaoImpl = new FileDaoImpl();
 		Vector<FileMessage> files = fileDaoImpl.findFilesByPath(uploadFilePath); 
