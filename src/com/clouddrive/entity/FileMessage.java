@@ -32,6 +32,12 @@ public class FileMessage {
 		this.user = user;
 	}
 
+	public String getShowSize() {
+		return showSize;
+	}
+	public void setShowSize(String showSize) {
+		this.showSize = showSize;
+	}
 	public String getFileName() {
 		return fileName;
 	}

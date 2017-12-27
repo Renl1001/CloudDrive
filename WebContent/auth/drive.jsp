@@ -122,7 +122,7 @@
 							</div>
 							<ul class="breadcrumb">
 								<c:if test="${lastPath != \"\"}">
-									<a href="/ListFiles?path=${lastPath }">返回上一级</a>
+									<a href="ListFiles?path=${lastPath }">返回上一级</a>
 									<span class="gt">|</span>
 								</c:if>
 								
@@ -177,7 +177,7 @@
 										<c:otherwise>
 											<c:url value="/DownLoad" var="downLoadURL">
 												<c:param name="fileName" value="${file.uuidName}"></c:param>
-												<c:param name="path" value="${path }"></c:param>
+												<c:param name="path" value="${file.path }"></c:param>
 											</c:url>
 											<c:url value="/ShareFile" var="shareURL">
 												<c:param name="fileName" value="${file.uuidName}"></c:param>
