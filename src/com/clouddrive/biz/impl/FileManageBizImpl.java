@@ -63,6 +63,7 @@ public class FileManageBizImpl implements FileManageBiz {
 	private boolean deleteFile(File file) {
 		String uuidName = file.getName();
 		fileDaoImpl.delFileByUuidName(uuidName);
+		shareManage.delShareByUuidName(uuidName);
 		return file.delete();
 	}
 
