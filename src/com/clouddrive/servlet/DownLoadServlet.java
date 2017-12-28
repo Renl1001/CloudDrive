@@ -24,8 +24,7 @@ public class DownLoadServlet extends HttpServlet {
 		String url = req.getParameter("url");
 		
 		if(url == null) {
-			System.out.println("path:"+path);
-			System.out.println("下载的文件名："+fileName);
+			// 下载文件
 			url = path+"\\"+fileName;
 		} else {
 			System.out.println("下载分享文件");

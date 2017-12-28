@@ -24,8 +24,8 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		String userName = req.getParameter("userName");
-		String pwd = req.getParameter("pwd");
+		String userName = req.getParameter("ruserName");
+		String pwd = req.getParameter("rpwd");
 		
 		System.out.println("Registering");
 		System.out.println("userName:"+userName);

@@ -110,6 +110,16 @@
     <servlet-name>DelShareServlet</servlet-name>
     <url-pattern>/DelShare</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>DelFileServlet</servlet-name>
+    <servlet-class>com.clouddrive.servlet.DelFileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelFileServlet</servlet-name>
+    <url-pattern>/DelFiles</url-pattern>
+  </servlet-mapping>
+  
   <filter>
     <filter-name>loginFilter</filter-name>
     <filter-class>com.clouddrive.filter.LoginFilter</filter-class>

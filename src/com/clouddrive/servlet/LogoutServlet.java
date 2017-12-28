@@ -13,6 +13,7 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		session.removeAttribute("name");
+		session.removeAttribute("path");
 		resp.sendRedirect("/CloudDrive/home.jsp");
 		return ;
 	}
