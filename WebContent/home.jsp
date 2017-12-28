@@ -8,19 +8,23 @@
 	<meta charset="UTF-8">
 	<title>CloudDrive</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+ 	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script> 
+	<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
 	<link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="/themes/fa/theme.min.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="js/fileinput.min.js" type="text/javascript"></script>
 	<script src="themes/fa/theme.min.js" type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="js/main.js" type="text/javascript"></script>
 	<script src="js/locales/zh.js" type="text/javascript"></script>
+	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="js/signupcheck.js" type="text/javascript"></script>
+	<script src="js/logincheck.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -80,7 +84,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<!-- 模态框头部 -->
-				<form class="form-horizontal" method="post" action="DoLogin" role="form">
+				<form class="form-horizontal" id="loginForm" method="post" action="DoLogin" role="form">
 					<!-- 模态框主体 -->
 				    <div class="row">
 				        <div class="col-md-offset-6 col-md-12">
@@ -116,33 +120,33 @@
 	<div class="modal fade" id="signup">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<!-- 模态框主体 -->
-			    <div class="row">
-			        <div class="col-md-offset-6 col-md-12">
-			            <form class="form-horizontal">
-			                <span class="heading">用户注册</span>
-			                <div class="form-group">
-			                    <input type="email" class="form-control" id="inputEmail3" placeholder="用户名">
-			                    <i class="fa fa-user"></i>
-			                </div>
-			                <div class="form-group">
-			                    <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
-			                    <i class="fa fa-lock"></i>
-			                    <!--<a href="#" class="fa fa-question-circle"></a>-->
-			                </div>
-			                <div class="form-group">
-			                    <input type="password" class="form-control" id="reinputPassword3" placeholder="重新输入密码">
-			                    <i class="fa fa-lock"></i>
-			                    <!--<a href="#" class="fa fa-question-circle"></a>-->
-			                </div>
-			            </form>
-			        </div>
-			    </div>
-				<!-- 模态框底部 -->
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" data-dismiss="modal">注册</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-				</div>	 
+				<form class="form-horizontal" id="signupForm" method="post" action="DoRegister" role="form">
+					<!-- 模态框主体 -->
+				    <div class="row">
+				        <div class="col-md-offset-6 col-md-12">			            
+				                <span class="heading">用户注册</span>
+				                <div class="form-group">
+				                    <input type="text" class="form-control" id="ruserName" name="ruserName" placeholder="用户名">
+				                    <i class="fa fa-user"></i>
+				                </div>
+				                <div class="form-group">
+				                    <input type="password" class="form-control" id="rpwd" name="rpwd" placeholder="密码">
+				                    <i class="fa fa-lock"></i>
+				                    <!--<a href="#" class="fa fa-question-circle"></a>-->
+				                </div>
+				                <div class="form-group">
+				                    <input type="password" class="form-control" id="rrepwd" name="rrepwd" placeholder="再次输入密码">
+				                    <i class="fa fa-lock"></i>
+				                    <!--<a href="#" class="fa fa-question-circle"></a>-->
+				                </div>
+				        </div>
+				    </div>
+					<!-- 模态框底部 -->
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-primary" value="注册">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+					</div>
+				</form>	 
 			</div>
 		</div>
 	</div>

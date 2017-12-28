@@ -31,6 +31,14 @@
     <url-pattern>/DoLogin</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.clouddrive.servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/DoRegister</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>UpLoadServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.UpLoadServlet</servlet-class>
   </servlet>
@@ -94,7 +102,6 @@
     <servlet-name>ShareListServlet</servlet-name>
     <url-pattern>/ShareManage</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>DelShareServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.DelShareServlet</servlet-class>

@@ -99,18 +99,7 @@ a.fileName:hover {
 .form-horizontal .form-control:focus + i{
     color: #00b4ef;
 }
-.form-horizontal .fa-question-circle{
-    display: inline-block;
-    position: absolute;
-    top: 12px;
-    right: 60px;
-    font-size: 20px;
-    color: #808080;
-    transition: all 0.5s ease 0s;
-}
-.form-horizontal .fa-question-circle:hover{
-    color: #000;
-}
+
 .form-horizontal .main-checkbox{
     float: left;
     width: 20px;
