@@ -50,9 +50,9 @@ public class FileDaoImpl extends BaseDao implements FileDao {
 	}
 
 	@Override
-	public Vector<FileMessage> findFilesByType(String type) {
-		String sql = "select * from file where type = ? order by updateTime desc";
-		Object[] params = { type };
+	public Vector<FileMessage> findFilesByTypeAndUser(String type, String user) {
+		String sql = "select * from file where type = ? and user = ? order by updateTime desc";
+		Object[] params = { type, user };
 
 		RSProcessor getUsersByNameProcessor = new RSProcessor() {
 
@@ -76,5 +76,12 @@ public class FileDaoImpl extends BaseDao implements FileDao {
 		};
 
 		return (Vector<FileMessage>) this.executeQuery(getUsersByNameProcessor, sql, params);
+	}
+
+	@Override
+	public int delFileByUuidName(String uuidName) {
+		String sql = "delete from file where uuidName = ?";
+		Object[] params = { uuidName };
+		return this.executeUpdate(sql, params);
 	}
 }

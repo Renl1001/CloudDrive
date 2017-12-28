@@ -182,3 +182,7 @@ a.fileName:hover {
 .card-container{
 	padding: 15px 15px;
 }
+
+.disabled {
+	display: none;
+}

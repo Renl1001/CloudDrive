@@ -42,6 +42,7 @@
 			});
 			$("#sidebar").children().each(function() {
 				if($(this).hasClass("${path }")) {
+					$("#sidebar .root").removeClass("list-group-item-info");
 					$(this).addClass("list-group-item-info");
 				} else {
 					$(this).addClass("list-group-item-action");
@@ -52,7 +53,6 @@
 			$("#linkText").val(data);
 			$("#shareModal").modal("show");
 		}
-
 	</script>
 </head>
 
@@ -95,7 +95,7 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group" id="sidebar">
-					<a href="ListFiles?path=root" class="list-group-item root" >全部文件</a>
+					<a href="ListFiles?path=root" class="list-group-item list-group-item-info root" >全部文件</a>
 					<a href="ListFiles?path=image" class="list-group-item image">图片</a>
 					<a href="ListFiles?path=document" class="list-group-item document">文档</a>
 					<a href="ListFiles?path=video" class="list-group-item video">视频</a>
@@ -184,13 +184,20 @@
 												<c:param name="path" value="${path }"></c:param>
 												<c:param name="size">${file.size }</c:param>
 											</c:url>
+											<c:url value="/DelFile" var="delURL">
+												<c:param name="fileName" value="${file.uuidName}"></c:param>
+												<c:param name="path" value="${file.path }"></c:param>
+											</c:url>
 											<td>
 												<img src="img/icon/${file.type }.png" alt="logo" style="width:25px;">
-												<a href="${downLoadURL}" class="fileName">${file.fileName}</a>&nbsp&nbsp
+												<a href="${downLoadURL}" class="fileName">${file.fileName}</a>
 											</td>
 											<td>
-												<a href="${downLoadURL }"><i class="fa fa-download fa-lg"></i></a>  
-												<a href="javascript:void(0);" class="share" url="${shareURL }"><i class="fa fa-share-alt fa-lg"></i></a>
+												<div class="disabled">
+													<a href="${downLoadURL }" title="下载"><i class="fa fa-download fa-lg"></i></a>  
+													<a href="javascript:void(0);" class="share" url="${shareURL }" title="分享"><i class="fa fa-share-alt fa-lg"></i></a>
+													<a href="${delURL }" title="删除" ><i class="fa fa-trash-o fa-lg"></i></a>
+												</div>
 											</td>
 											<td>${file.showSize }</td>
 										</c:otherwise>

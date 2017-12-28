@@ -15,7 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet"
         type="text/css" />
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/jquery.zclip.js" type="text/javascript"></script>
 	<script src="js/ajax.js"></script>
 
@@ -91,7 +91,7 @@
 									<a href="Share?key=${share.key }" class="fileName">${share.fileName}</a>&nbsp&nbsp
 								</td>
 								<td>  
-									<a href="${delURL }"><i class="fa fa-ban fa-lg"></i></a>
+									<a href="${delURL }" title="取消分享"><i class="fa fa-ban fa-lg"></i></a>
 								</td>
 								<td>${share.downloads }</td>
 								<td>${share.showSize }</td>

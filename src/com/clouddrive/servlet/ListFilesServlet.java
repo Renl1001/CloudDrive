@@ -1,7 +1,6 @@
 package com.clouddrive.servlet;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Vector;
 
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.clouddrive.dao.impl.FileDaoImpl;
+import com.clouddrive.biz.impl.FileListBizImpl;
 import com.clouddrive.entity.FileMessage;
 
 public class ListFilesServlet extends HttpServlet {
@@ -22,89 +21,48 @@ public class ListFilesServlet extends HttpServlet {
 		String path = (String)req.getParameter("path");
 		if(path == null) {
 			path = (String)session.getAttribute("path");
+			if(path == null) {
+				System.out.println("找不到路径，默认为root");
+				path = "root";
+			}
 		} else {
 			session.setAttribute("path", path);
 		}
 		
-		if(path == null) {
-			System.out.println("找不到路径，默认为root");
-			path = "root";
-		}
 		String userName = (String)session.getAttribute("name");
+		// 用户名失效，跳转到登录界面
 		if(userName == null) {
 			resp.sendRedirect("home.jsp");
 			return;
 		}
 		
-		String uploadFilePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
-		String types[] = {"image", "document", "video", "music", "other"};
-		
-		for (String type:types) {
-			if(path.equals(type)) {
-				// 存储要下载的文件名
-				FileDaoImpl fileDaoImpl = new FileDaoImpl();
-				Vector<FileMessage> files;
-				if(type.equals("document")) {
-					files = fileDaoImpl.findFilesByType("doc");
-					for (FileMessage file:fileDaoImpl.findFilesByType("xls")) {
-						files.add(file);
-					}
-					for (FileMessage file:fileDaoImpl.findFilesByType("ppt")) {
-						files.add(file);
-					}
-				} else {
-					files = fileDaoImpl.findFilesByType(path);
-				}
-				req.setAttribute("files", files);
-				req.setAttribute("path", path);
-				req.getRequestDispatcher("/auth/drive.jsp").forward(req, resp);
-				return ;
-			}
-		}
-		System.out.println("ListFiles:");
-//		System.out.println(uploadFilePath);
+		System.out.println("-----ListFiles:");
 		System.out.println("path:");
 		System.out.println(path);
-		// 存储要下载的文件名
-		FileDaoImpl fileDaoImpl = new FileDaoImpl();
-		Vector<FileMessage> files = fileDaoImpl.findFilesByPath(uploadFilePath); 
 		
-		Map<String, String> paths = new LinkedHashMap<>();
-		String pathNames[] = path.split("/");
-		createPaths(paths, pathNames);
+		// 业务逻辑
+		FileListBizImpl fileListBizImpl = new FileListBizImpl();
 		
-		String lastPath = getLastPath(pathNames);
+		// 通过文件类型获取fileList
+		Vector<FileMessage> files = fileListBizImpl.getFilesByTypeAndUser(userName, path);
+		if(files != null) {
+			req.setAttribute("files", files);
+			req.setAttribute("path", path);
+			req.getRequestDispatcher("/auth/drive.jsp").forward(req, resp);
+			return ;
+		}
+		
+		String uploadFilePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
+		// 通过路径获取fileList
+		files = fileListBizImpl.getFilesByPath(uploadFilePath); 
+		
+		Map<String, String> paths = fileListBizImpl.getPaths(path);
+		String lastPath = fileListBizImpl.getLastPath(path);
 		req.setAttribute("lastPath", lastPath);
 		req.setAttribute("files", files);
 		req.setAttribute("paths", paths);
 		req.setAttribute("path", path);
 		req.getRequestDispatcher("/auth/drive.jsp").forward(req, resp);
-	}
-	
-	String getLastPath(String pathNames[]) {
-		int len = pathNames.length;
-		String lastPath = "";
-		for(int i = 0; i < len-1; i++) {
-			if(i == 0) {
-				lastPath = pathNames[i];
-			} else {
-				lastPath = lastPath + "/" + pathNames[i];
-			}
-		}
-		return lastPath;
-	}
-	
-	void createPaths(Map<String, String> paths, String pathNames[]) {
-		String curPath = "";
-		for(String name : pathNames) {
-			if(curPath == "") {
-				curPath = name;
-				paths.put(name,	curPath);
-			} else {
-				curPath = curPath + "/" + name;
-				paths.put(name, curPath);
-			}
-		}
 	}
 	
 	@Override

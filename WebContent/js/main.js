@@ -20,11 +20,14 @@ $(function () {
 			$(':checkbox').attr('checked', true);
 		else
 			$(':checkbox').attr('checked', false);
-	});
+    });
 
-	$("#sidebar li").mouseover(function() {
-		$(this).addClass('tr_hover');
-	}).mouseout(function() {
-		$(this).removeClass('tr_hover')
-	});
+    $("tbody tr").bind({
+        mouseover: function() {
+            $(this).find(".disabled").show();
+        },
+        mouseout: function() {
+            $(this).find(".disabled").hide();
+        }
+    });
 })
