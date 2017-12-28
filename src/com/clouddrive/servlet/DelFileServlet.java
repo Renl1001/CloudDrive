@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.clouddrive.biz.impl.DelFileBizImpl;
+import com.clouddrive.biz.impl.FileManageBizImpl;
 
 /**
  * Servlet implementation class DelFile
@@ -26,8 +26,8 @@ public class DelFileServlet extends HttpServlet {
 		String path = req.getParameter("path");
 		System.out.println("delFileServlet:");
 		
-		DelFileBizImpl delFileBizImpl = new DelFileBizImpl();
-		if(delFileBizImpl.delFile(path, uuidName)) {
+		FileManageBizImpl fileManage = new FileManageBizImpl();
+		if(fileManage.delFile(path, uuidName)) {
 			// 删除成功
 			System.out.println("删除成功");
 		}
