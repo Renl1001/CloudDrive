@@ -82,14 +82,19 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="card-container col-sm-8">
-				<div class="card">
-					<div class="card-body">
-						<c:choose>
-							<c:when test="${empty share }">
-								找不到资源
-							</c:when>
-							<c:otherwise>
+			<div class="col-sm-9">
+				<c:choose>
+					<c:when test="${empty share }">
+						找不到资源
+					</c:when>
+					<c:otherwise>
+						<div class="row">
+							<div class="col-sm-10">
+								<div class="container">
+									${share.user } 的分享
+								</div>
+							</div>
+							<div class="col-sm-2 text-right">
 								<c:url value="/DownLoad" var="downLoadURL">
 									<c:param name="fileName" value="${share.uuidName}"></c:param>
 									<c:param name="url" value="${share.url }"></c:param>
@@ -100,31 +105,33 @@
 										<i class="fa fa-download fa-lg"></i> 下载
 									</button>
 								</a>
-								<div class="row">
-									<div class="card col-sm-2">
-										<img src="img/icon/${share.type }.png" alt="logo" style="width:80px;"> 
-									</div>	
-									<div class="card col-sm-10">
-										<div class="row">
-											<div class=" col-sm-6">
-												<div>文件名:</div>
-												<div>大小:</div>
-												<div>热度:</div>
-											</div>
-											<div class=" col-sm-6">
-												<div>${share.fileName }</div>
-												<div>${share.size/1024 } kb</div>
-												<div>${share.downloads } </div>
-											</div>		
-										</div>	
-									</div>
-								</div>
-							</c:otherwise>
-						</c:choose>
-					</div>	
-				</div>
+							</div>
+						</div>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th><input id="CheckAll" type="checkbox" /></th>
+									<th>文件名</th>
+									<th>大小</th>
+									<th>分享时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input name="subBox" type="checkbox" /></td>
+									<td>
+										<img src="img/icon/${share.type }.png" alt="logo" class="fileIcon">
+										<a href="${downLoadURL}" class="fileName">${share.fileName}</a>&nbsp&nbsp
+									</td>
+									<td>${share.showSize }</td>
+									<td>${share.shareTime }</td>
+								</tr>
+							</tbody>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
-			<div class="card col-sm-4">
+			<div class="card col-sm-3">
 				<div class="card-body">
 					热门资源
 				</div>

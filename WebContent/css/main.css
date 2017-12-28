@@ -175,3 +175,8 @@ a.fileName:hover {
 .disabled {
 	display: none;
 }
+
+.fileIcon {
+	margin: 5px;
+	width: 35px;
+}
