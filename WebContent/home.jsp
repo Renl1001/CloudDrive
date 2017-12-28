@@ -126,16 +126,16 @@
 				        <div class="col-md-offset-6 col-md-12">			            
 				                <span class="heading">用户注册</span>
 				                <div class="form-group">
-				                    <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名">
+				                    <input type="text" class="form-control" id="ruserName" name="ruserName" placeholder="用户名">
 				                    <i class="fa fa-user"></i>
 				                </div>
 				                <div class="form-group">
-				                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="密码">
+				                    <input type="password" class="form-control" id="rpwd" name="rpwd" placeholder="密码">
 				                    <i class="fa fa-lock"></i>
 				                    <!--<a href="#" class="fa fa-question-circle"></a>-->
 				                </div>
 				                <div class="form-group">
-				                    <input type="password" class="form-control" id="repwd" name="repwd" placeholder="再次输入密码">
+				                    <input type="password" class="form-control" id="rrepwd" name="rrepwd" placeholder="再次输入密码">
 				                    <i class="fa fa-lock"></i>
 				                    <!--<a href="#" class="fa fa-question-circle"></a>-->
 				                </div>
