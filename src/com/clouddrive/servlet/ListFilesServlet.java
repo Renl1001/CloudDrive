@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.clouddrive.biz.impl.FileListBizImpl;
 import com.clouddrive.entity.FileMessage;
 
+@SuppressWarnings("serial")
 public class ListFilesServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

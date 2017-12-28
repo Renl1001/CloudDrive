@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 
 import com.clouddrive.dao.BaseDao;
 
+@SuppressWarnings("serial")
 public class InitServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {

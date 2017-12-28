@@ -43,8 +43,6 @@ public class ShareFileServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		out.write(link);
 		out.close();
-//		req.setAttribute("link", link);
-//		req.getRequestDispatcher("/auth/drive.jsp").forward(req, resp);
 	}
 	
 	@Override
