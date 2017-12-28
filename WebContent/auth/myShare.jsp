@@ -90,8 +90,10 @@
 									<img src="img/icon/${share.type }.png" alt="logo" style="width:25px;">
 									<a href="Share?key=${share.key }" class="fileName">${share.fileName}</a>&nbsp&nbsp
 								</td>
-								<td>  
-									<a href="${delURL }" title="取消分享"><i class="fa fa-ban fa-lg"></i></a>
+								<td>
+									<div class="disabled">
+										<a href="${delURL }" title="取消分享"><i class="fa fa-ban fa-lg"></i></a>
+									</div>  
 								</td>
 								<td>${share.downloads }</td>
 								<td>${share.showSize }</td>

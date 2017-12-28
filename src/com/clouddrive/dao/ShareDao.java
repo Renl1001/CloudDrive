@@ -22,4 +22,5 @@ public interface ShareDao {
 	public int delShareByUuidName(String uuidName);
 	
 	public String findKeyByUuidName(String uuidName);
+	
 }

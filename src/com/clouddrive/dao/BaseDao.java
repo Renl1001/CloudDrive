@@ -94,7 +94,7 @@ public abstract class BaseDao {
 						pstmt.setObject(i + 1, params[i]);
 					}
 				}
-				//System.out.println(pstmt);
+				System.out.println(pstmt);
 				result = pstmt.executeUpdate();
 			}
 		} catch (SQLException e) {

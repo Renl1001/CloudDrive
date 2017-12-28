@@ -109,7 +109,7 @@
 				<div class="card-body">
 					<c:choose>
 						<c:when test="${empty paths }">
-							${path }
+							<%-- ${path } --%>
 						</c:when>
 						
 						<c:otherwise>
@@ -120,7 +120,6 @@
 								<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#newFolder">
 									<i class="fa fa-folder-o fa-lg"></i> 新建文件夹
 								</button>
-								
 							</div>
 							<ul class="breadcrumb">
 								<c:if test="${lastPath != \"\"}">
@@ -173,7 +172,15 @@
 												<img src="img/icon/${file.type }.png" alt="logo" style="width:25px;">
 												<a href="${folderURL}" class="fileName">${file.fileName}</a>
 											</td>
-											<td> </td>
+											<td>
+												<c:url value="/DelFile" var="delURL">
+													<c:param name="fileName" value="${file.fileName}"></c:param>
+													<c:param name="path" value="${file.path }"></c:param>
+												</c:url>
+												<div class="disabled">
+													<a href="${delURL }" title="删除" ><i class="fa fa-trash-o fa-lg"></i></a>
+												</div>
+											</td>
 											<td>-</td>
 										</c:when>
 										<c:otherwise>
@@ -258,7 +265,7 @@
 					</div>
 
 					<div class="modal-footer">
-						<input type="submit" class="btn btn-info" value="提交按钮">
+						<input type="submit" class="btn btn-info" value="新建">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
 					</div>
 				</form>
@@ -291,9 +298,9 @@
 							<p class="text-muted">可以将链接发送给你的QQ等好友</p>
 						</div>
 						<div class="col-sm-3">
-							<div class="alert alert-success">
-								<!-- <strong>成功!</strong> 指定操作成功提示信息。 -->
-							</div>
+							<!-- <div class="alert alert-success">
+								<strong>成功!</strong> 指定操作成功提示信息。
+							</div> -->
 						</div>
 					</div>
 					

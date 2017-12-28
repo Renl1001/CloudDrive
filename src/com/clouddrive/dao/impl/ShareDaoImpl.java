@@ -8,7 +8,6 @@ import com.clouddrive.dao.BaseDao;
 import com.clouddrive.dao.RSProcessor;
 import com.clouddrive.dao.ShareDao;
 import com.clouddrive.entity.Share;
-import com.clouddrive.entity.User;
 
 public class ShareDaoImpl extends BaseDao implements ShareDao {
 
@@ -167,9 +166,7 @@ public class ShareDaoImpl extends BaseDao implements ShareDao {
 						key = rs.getString("keyword");
 					}
 				}
-
 				return key;
-
 			}
 		};
 

@@ -84,4 +84,11 @@ public class FileDaoImpl extends BaseDao implements FileDao {
 		Object[] params = { uuidName };
 		return this.executeUpdate(sql, params);
 	}
+
+	@Override
+	public int delFolder(String path, String fileName) {
+		String sql = "delete from file where fileName = ? and type = 'folder' and path = ?";
+		Object[] params = { fileName, path };
+		return this.executeUpdate(sql, params);
+	}
 }

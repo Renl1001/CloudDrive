@@ -14,4 +14,5 @@ public interface FileDao {
 	
 	// 删除文件
 	public int delFileByUuidName(String uuidName);
+	public int delFolder(String path, String fileName);
 }
