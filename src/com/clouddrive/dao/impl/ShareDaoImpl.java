@@ -75,7 +75,7 @@ public class ShareDaoImpl extends BaseDao implements ShareDao {
 
 	@Override
 	public Vector<Share> findShareByUser(String name) {
-		String sql = "select * from share where user = ?";
+		String sql = "select * from share where user = ? order by shareTime desc";
 		Object[] params = { name };
 
 		RSProcessor getUsersByNameProcessor = new RSProcessor() {
@@ -119,6 +119,61 @@ public class ShareDaoImpl extends BaseDao implements ShareDao {
 				"where keyword = ?";
 		Object[] params = { key };
 		return this.executeUpdate(sql, params);
+	}
+
+	@Override
+	public int delShareByUuidName(String uuidName) {
+		String sql = "delete from share\r\n" + 
+				"where uuidName = ?";
+		Object[] params = { uuidName };
+		return this.executeUpdate(sql, params);
+	}
+
+	@Override
+	public int countShareByUuidName(String uuidName) {
+		String sql = "select count(*) as share_count from share where uuidName=?";
+		Object[] params = { uuidName };
+
+		RSProcessor countUserByNameProcessor = new RSProcessor() {
+
+			public Object process(ResultSet rs) throws SQLException {
+				int count = 0;
+				if (rs != null) {
+					if (rs.next()) {
+						count = rs.getInt("share_count");
+					}
+				}
+
+				return new Integer(count);
+			}
+
+		};
+
+		return (Integer) this.executeQuery(countUserByNameProcessor, sql, params);
+	}
+
+	@Override
+	public String findKeyByUuidName(String uuidName) {
+		String sql = "select keyword from share where uuidName = ?";
+		Object[] params = { uuidName };
+
+		RSProcessor getUserByNameProcessor = new RSProcessor() {
+
+			public Object process(ResultSet rs) throws SQLException {
+				String key = null;
+
+				if (rs != null) {
+					if (rs.next()) {
+						key = rs.getString("keyword");
+					}
+				}
+
+				return key;
+
+			}
+		};
+
+		return (String) this.executeQuery(getUserByNameProcessor, sql, params);
 	}
 
 }

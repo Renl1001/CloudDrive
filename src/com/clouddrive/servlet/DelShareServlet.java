@@ -1,13 +1,14 @@
 package com.clouddrive.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.clouddrive.dao.impl.ShareDaoImpl;
+import com.clouddrive.biz.impl.ShareManageBizImpl;
 
 /**
  * Servlet implementation class delShareServlet
@@ -26,8 +27,10 @@ public class DelShareServlet extends HttpServlet {
 		
 		String key = req.getParameter("key");
 		
-		ShareDaoImpl shareDaoImpl = new ShareDaoImpl();
-		shareDaoImpl.delShareByKey(key);
+		ShareManageBizImpl shareManage = new ShareManageBizImpl();
+		if(shareManage.delShareByKey(key)) {
+			// 删除成功
+		}
 		
 		resp.sendRedirect("ShareManage");
 	}

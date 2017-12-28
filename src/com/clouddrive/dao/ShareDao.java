@@ -7,9 +7,8 @@ import com.clouddrive.entity.Share;
 public interface ShareDao {
 	// 查找分享
 	public int countShareByKey(String key);
-
+	public int countShareByUuidName(String uuidName);
 	public Share findShareByKey(String key);
-	
 	public Vector<Share> findShareByUser(String name);
 
 	// 添加分享
@@ -20,4 +19,7 @@ public interface ShareDao {
 	
 	// 删除分享
 	public int delShareByKey(String key);
+	public int delShareByUuidName(String uuidName);
+	
+	public String findKeyByUuidName(String uuidName);
 }

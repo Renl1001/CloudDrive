@@ -26,6 +26,8 @@ public class FileManageBizImpl implements FileManageBiz {
 		}
 		FileDaoImpl fileDaoImpl = new FileDaoImpl();
 		if(fileDaoImpl.delFileByUuidName(uuidName) != 0) {
+			ShareManageBizImpl shareMaange = new ShareManageBizImpl();
+			shareMaange.delShareByUuidName(uuidName);
 			return true;
 		}
 		return false;

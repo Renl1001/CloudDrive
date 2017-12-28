@@ -1,15 +1,15 @@
 package com.clouddrive.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.clouddrive.dao.impl.ShareDaoImpl;
+import com.clouddrive.biz.impl.ShareManageBizImpl;
 import com.clouddrive.entity.Share;
-import com.clouddrive.entity.Type;
 
 /**
  * Servlet implementation class ShareServlet
@@ -27,10 +27,8 @@ public class ShareServlet extends HttpServlet {
 		
 		String key = req.getParameter("key");
 		
-		ShareDaoImpl shareImpl = new ShareDaoImpl();
-		Share share = shareImpl.findShareByKey(key);
-		String fileName = share.getFileName();
-		String type = Type.getType(fileName);
+		ShareManageBizImpl shareManage = new ShareManageBizImpl();
+		Share share = shareManage.getShareByKey(key);
 		
 		req.setAttribute("share", share);
 		req.getRequestDispatcher("share.jsp").forward(req, resp);
