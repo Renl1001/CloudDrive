@@ -236,13 +236,13 @@
 					<div class="modal-body">
 						<input type="text" class="pathText" name="path" value="${path }">
 						<div class="file-loading">
-							<input type="file" name="txt_file" id="uploadFile" />
+							<input type="file" name="txt_file" multiple  id="uploadFile" />
 						</div>
 						<div id="kartik-file-errors"></div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-						<button type="submit" class="btn btn-primary" title="上传">上传</button>
+						<button type="button" class="btn btn-primary" title="上传">确定</button>
 					</div>
 				</form>
 			</div>

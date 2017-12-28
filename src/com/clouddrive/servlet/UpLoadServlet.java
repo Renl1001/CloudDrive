@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.stream.JsonGenerator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,9 +31,13 @@ public class UpLoadServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = req.getSession();
 		String userName = (String)session.getAttribute("name");
-		String path = "";
+		
+		String path = (String)session.getAttribute("path");
 		//用户保存的文件路径
 		String savePath = "";
 		
@@ -76,7 +84,7 @@ public class UpLoadServlet extends HttpServlet {
 					
 					// 添加UUID
 					String uuidName = makeFileName(fileName);
-					
+					savePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
 					InputStream in = item.getInputStream();
 					FileOutputStream out = new FileOutputStream(savePath+"\\"+uuidName);
 					byte buffer[] = new byte[1024];
@@ -107,8 +115,13 @@ public class UpLoadServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		System.out.println("yes2");
-		req.setAttribute("message", message);
-		resp.sendRedirect("ListFiles");
+		PrintWriter out = resp.getWriter();
+		JsonGenerator generator = Json.createGenerator(out);
+		generator.writeStartObject().write("result", "success").writeEnd();
+        out.flush();
+        out.close();
+//		req.setAttribute("message", message);
+//		resp.sendRedirect("ListFiles");
 		//req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
 	

@@ -25,6 +25,7 @@ public class ListFilesServlet extends HttpServlet {
 			if(path == null) {
 				System.out.println("找不到路径，默认为root");
 				path = "root";
+				session.setAttribute("path", path);
 			}
 		} else {
 			session.setAttribute("path", path);
