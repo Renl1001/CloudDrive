@@ -98,12 +98,12 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group" id="sidebar">
-					<a href="ListFiles?path=root" class="list-group-item root" >全部文件</a>
-					<a href="ListFiles?path=image" class="list-group-item image">图片</a>
-					<a href="ListFiles?path=document" class="list-group-item document">文档</a>
-					<a href="ListFiles?path=video" class="list-group-item video">视频</a>
-					<a href="ListFiles?path=music" class="list-group-item music">音乐</a>
-					<a href="ListFiles?path=other" class="list-group-item other">其他</a>
+					<a href="ListFiles?path=root" class="list-group-item root" ><i class="fa fa-home"></i> &nbsp&nbsp全部文件</a>
+					<a href="ListFiles?path=image" class="list-group-item image"><i class="fa fa-photo"></i> &nbsp&nbsp图片</a>
+					<a href="ListFiles?path=document" class="list-group-item document"><i class="fa fa-file-text-o"></i> &nbsp&nbsp文档</a>
+					<a href="ListFiles?path=video" class="list-group-item video"><i class="fa fa-film"></i> &nbsp&nbsp视频</a>
+					<a href="ListFiles?path=music" class="list-group-item music"><i class="fa fa-music"></i> &nbsp&nbsp音乐</a>
+					<a href="ListFiles?path=other" class="list-group-item other"><i class="fa fa-sticky-note-o"></i> &nbsp&nbsp其他</a>
 				</div>
 			</div>
 			<div class="card col-sm-10">
@@ -226,7 +226,7 @@
 	<!-- 文件上传 -->
 	<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
+			<div class="modal-content" style="width:820px">
 				<div class="modal-header">
 					<h5 class="modal-title" id="uploadModalLabel">文件上传</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">

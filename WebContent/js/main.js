@@ -9,7 +9,8 @@ $(function () {
         theme: 'fa',
         language: 'zh',
         uploadUrl: "UpLoad",
-        //allowedFileExtensions: ['jpg', 'gif', 'png'],
+        allowedPreviewTypes: ['image', 'html', 'text', 'video', 'audio'],//预览类型
+        //allowedFileExtensions: ['jpg', 'gif', 'png'], //文件上传类型
         maxFileSize: 0,
         maxFileCount: 10
     });
