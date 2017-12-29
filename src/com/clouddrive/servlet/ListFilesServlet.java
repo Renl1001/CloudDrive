@@ -19,6 +19,14 @@ public class ListFilesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
+		
+		String userName = (String)session.getAttribute("name");
+		// 用户名失效，跳转到登录界面
+		if(userName == null) {
+			resp.sendRedirect("home.jsp");
+			return;
+		}
+		
 		String path = (String)req.getParameter("path");
 		if(path == null) {
 			path = (String)session.getAttribute("path");
@@ -29,13 +37,6 @@ public class ListFilesServlet extends HttpServlet {
 			}
 		} else {
 			session.setAttribute("path", path);
-		}
-		
-		String userName = (String)session.getAttribute("name");
-		// 用户名失效，跳转到登录界面
-		if(userName == null) {
-			resp.sendRedirect("home.jsp");
-			return;
 		}
 		
 		System.out.println("-----ListFiles:");

@@ -226,25 +226,21 @@
 	<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
-				<form action="UpLoad" id="upLoadForm" enctype="multipart/form-data" method="post">
-					<div class="modal-header">
-						<h5 class="modal-title" id="uploadModalLabel">文件上传</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+				<div class="modal-header">
+					<h5 class="modal-title" id="uploadModalLabel">文件上传</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="file-loading">
+						<input type="file" name="txt_file" multiple  id="uploadFile" />
 					</div>
-					<div class="modal-body">
-						<input type="text" class="pathText" name="path" value="${path }">
-						<div class="file-loading">
-							<input type="file" name="txt_file" multiple  id="uploadFile" />
-						</div>
-						<div id="kartik-file-errors"></div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-primary" title="上传">确定</button>
-					</div>
-				</form>
+					<div id="kartik-file-errors"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary refresh">确定</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -261,7 +257,7 @@
 				
 					<div class="modal-body">
 						<input type="text" class="form-control" name="folderName" id="name" placeholder="请输入文件夹名">
-						<input type="text" class="pathText" name="path" value="${path }">
+						<%-- <input type="text" class="pathText" name="path" value="${path }"> --%>
 					</div>
 
 					<div class="modal-footer">
