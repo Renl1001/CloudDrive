@@ -16,7 +16,7 @@ $(function () {
     });
 
     $('#uploadFile').on('filebatchuploadcomplete', function(event, files, extra) {
-        $("#refresh").text("确定");
+        $(".refresh").text("确定");
         console.log('File batch upload complete');
     });
 

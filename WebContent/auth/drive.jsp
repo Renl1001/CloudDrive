@@ -240,7 +240,7 @@
 					<div id="kartik-file-errors"></div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" class="refresh">取消</button>
+					<button type="button" class="btn btn-primary refresh" >取消</button>
 				</div>
 			</div>
 		</div>
