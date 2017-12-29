@@ -83,6 +83,13 @@ public class UpLoadServlet extends HttpServlet {
 					// 添加UUID
 					String uuidName = makeFileName(fileName);
 					savePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
+					
+					File folder = new File(savePath);
+					
+					if(!folder.exists() || !folder.isDirectory()) {
+						System.out.println(savePath+"目录不存在，需要创建");
+						folder.mkdirs();
+					}
 					InputStream in = item.getInputStream();
 					FileOutputStream out = new FileOutputStream(savePath+"\\"+uuidName);
 					byte buffer[] = new byte[1024];

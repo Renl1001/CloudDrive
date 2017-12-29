@@ -45,7 +45,7 @@
 					<a class="nav-link" href="ListFiles">网盘</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link nav-current" href="ShareManage">分享</a>
+					<a class="nav-link nav-current" href="ShareManage">我的分享</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">收件夹</a>

@@ -28,7 +28,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <script src="js/locales/zh.js" type="text/javascript"></script>
-    <script src="js/jquery.zclip.js" type="text/javascript"></script>
    	<script type="text/javascript">
 		$(function() {
 			$(".share").click(function() {
@@ -74,7 +73,7 @@
 					<a class="nav-link nav-current" href="ListFiles">网盘</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="ShareManage">分享</a>
+					<a class="nav-link" href="ShareManage">我的分享</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">收件夹</a>

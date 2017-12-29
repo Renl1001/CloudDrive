@@ -96,7 +96,7 @@
 						<div class="item">
 							<div class="commend-title ellipsis">
 								<img src="img/icon/${share.type }.png" alt="logo" class="icon25">
-								<a href="${downLoadURL}" class="fileName" target="_blank" title="${share.fileName}">${share.fileName}</a>
+								<a href="Share?key=${share.key }" class="fileName" target="_blank" title="${share.fileName}">${share.fileName}</a>
 							</div>
 							<div class="commend-desc">
 								<small>下载量：${share.downloads }</small>
