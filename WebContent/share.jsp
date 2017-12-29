@@ -42,17 +42,6 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#">收件夹</a>
 				</li>
-				<li class="nav-item">
-					<img src="img/head.jpg" class="rounded-circle" alt="head" style="width:40px;">
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-						${name }
-					</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="/CloudDrive/DoLogout">退出登录</a>
-					</div>
-				</li>
 			</ul>
 		</div>
 	</nav>

@@ -15,10 +15,7 @@ $(function () {
         maxFileCount: 10
     });
 
-    $('#uploadFile').on('filebatchuploadcomplete', function(event, files, extra) {
-        $(".refresh").text("确定");
-        console.log('File batch upload complete');
-    });
+    
 
     $("#CheckAll").click(function () {
         if (this.checked)
@@ -35,10 +32,19 @@ $(function () {
             $(this).find(".disabled").hide();
         }
     });
-
-    $(".refresh").click(function() {
-    	window.location.href="ListFiles";
+    
+    $('#uploadFile').on('filebatchuploadcomplete', function(event, files, extra) {
+    	$("#uploadModal").find(".modal-footer").find(".btn").text("确定");
+        console.log('File batch upload complete');
+    });
+    $('#uploadModal').on("hide.bs.modal", function() {
+    	if($("#uploadModal").find(".modal-footer").find(".btn").text() == "确定") {
+    		window.location.href="ListFiles";
+    	}
     });
     
+    $("#shareModal").on("hide.bs.modal", function() {
+    	window.location.href="ListFiles";
+    });
     
 })

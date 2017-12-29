@@ -149,7 +149,6 @@
 						</c:otherwise>
 					</c:choose>
 							
-
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -240,7 +239,7 @@
 					<div id="kartik-file-errors"></div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary refresh" >取消</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
 				</div>
 			</div>
 		</div>
@@ -306,7 +305,7 @@
 				</div>
 				<!-- 模态框底部 -->
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-primary refresh" data-dismiss="modal" >关闭</button>
+					<button type="button" class="btn btn-outline-primary" data-dismiss="modal" >关闭</button>
 				</div>
 			</div>
 		</div>
