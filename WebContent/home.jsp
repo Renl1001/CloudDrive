@@ -84,6 +84,62 @@
 		</div>
 	</nav>
 	
+	<div class="container">
+		<div class="row">
+			<c:forEach var="share" items="${shares}">
+				<div class="card-container col-sm-4">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-xl-3"></div>
+								<div class="col-xl-6" >
+									<img  class="home_icon" src="img/icon/${share.type }.png" > 
+								</div>	
+							</div>
+							<div class="row">
+								<!-- <div class="col-sm-1"></div> -->
+								<div class="col-sm-12">
+									<div class="row">
+										<div class="col-sm-3">
+											文件名 
+										</div>
+										<div class="col-sm-9 ellipsis">
+											<a href="Share?key=${share.key }" class="fileName" title="${share.fileName}">${share.fileName}</a>&nbsp&nbsp
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-3">
+											热度 
+										</div>
+										<div class="col-sm-9">
+											${share.downloads }
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-3">
+											大小
+										</div>
+										<div class="col-sm-9">
+											${share.showSize }
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-3">
+											分享者
+										</div>
+										<div class="col-sm-9">
+											${share.user }
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>	
+				</div> <!--card-container -->	
+			</c:forEach>
+		</div>	
+	</div>
+	
 	<!-- 登录模态框  -->
 	<div class="modal fade" id="login">
 		<div class="modal-dialog">
@@ -167,62 +223,6 @@
 				</form>
 			</div>
 		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<c:forEach var="share" items="${shares}">
-				<div class="card-container col-sm-4">
-					<div class="card">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-xl-3"></div>
-								<div class="col-xl-6" >
-									<img  class="home_icon" src="img/icon/${share.type }.png" > 
-								</div>	
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-11">
-									<div class="row">
-										<div class="col-sm-4">
-											文件名 
-										</div>
-										<div class="col-sm-8">
-											${share.fileName }
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-4">
-											热度 
-										</div>
-										<div class="col-sm-8">
-											${share.downloads }
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-4">
-											大小
-										</div>
-										<div class="col-sm-8">
-											${share.showSize }
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-4">
-											分享者
-										</div>
-										<div class="col-sm-8">
-											${share.user }
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>	
-					</div>	
-				</div> <!--card-container -->	
-			</c:forEach>
-			
-		</div>	
 	</div>
 </body>
 </html>

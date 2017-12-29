@@ -186,3 +186,9 @@ a.fileName:hover {
 #copyInfo .alert {
 	display:none
 }
+
+.ellipsis{
+	white-space:nowrap;
+	text-overflow:ellipsis;
+   	overflow: hidden;
+}
