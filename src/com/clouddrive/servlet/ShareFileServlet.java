@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import com.clouddrive.biz.impl.ShareManageBizImpl;
 
+import net.sf.json.JSONObject;
+
 @SuppressWarnings("serial")
 public class ShareFileServlet extends HttpServlet {
 	@Override
@@ -30,6 +32,10 @@ public class ShareFileServlet extends HttpServlet {
 		String key = shareManage.insertShare(userName, uuidName, url, size);
 		String link = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath()
 				+ "/Share" + "?key=" + key;
+		
+		JSONObject json = new JSONObject();
+		
+		
 		System.out.println(link);
 		PrintWriter out = resp.getWriter();
 		out.write(link);

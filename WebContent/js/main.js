@@ -36,7 +36,7 @@ $(function () {
         }
     });
 
-    $("#refresh").click(function() {
+    $(".refresh").click(function() {
     	window.location.href="ListFiles";
     });
     

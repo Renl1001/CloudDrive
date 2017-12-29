@@ -14,12 +14,11 @@
 	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet"
-        type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
 	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/jquery.zclip.js" type="text/javascript"></script>
+	<script src="js/clipboard.min.js"></script>
 	<script src="js/ajax.js"></script>
 
     <script src="js/fileinput.min.js" type="text/javascript"></script>
@@ -29,19 +28,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <script src="js/locales/zh.js" type="text/javascript"></script>
+    <script src="js/jquery.zclip.js" type="text/javascript"></script>
    	<script type="text/javascript">
 		$(function() {
 			$(".share").click(function() {
 				$.get($(this).attr("url"), {}, handleShowLink);
-			})
-			$("#copyLink").zclip({
-				path: "js/ZeroClipboard.swf",
-				copy: function() { // 复制
-					return $("#linkText").val();
-				},
-				afterCopy: function() {
-					alert('复制成功');
-				}
 			});
 			$("#sidebar").children().each(function() {
 				if($(this).hasClass("${path }")) {
@@ -50,12 +41,21 @@
 				} else {
 					$(this).addClass("list-group-item-action");
 				}
-			})
-		})
+			});
+			
+			var clipboard = new Clipboard('#copyLink');
+			clipboard.on('success', function(e) {
+				$("#copySuccess").show();
+			    e.clearSelection();
+			});
+			clipboard.on('error', function(e) {
+				$("#copyError").show();
+			});
+		});
 		function handleShowLink(data) {
 			$("#linkText").val(data);
 			$("#shareModal").modal("show");
-		}
+		};
 	</script>
 </head>
 
@@ -240,7 +240,7 @@
 					<div id="kartik-file-errors"></div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="refresh">取消</button>
+					<button type="button" class="btn btn-primary" class="refresh">取消</button>
 				</div>
 			</div>
 		</div>
@@ -269,7 +269,6 @@
 			</div>
 		</div>
 	</div>
-	
 	<!-- 显示分享链接 -->
     <div class="modal fade" id="shareModal">
 		<div class="modal-dialog modal-lg">
@@ -287,24 +286,27 @@
 							<input type="text" id="linkText" class="form-control">
 						</div>
 						<div class="col-sm-3">
-							<button type="button" id="copyLink" class="btn btn-primary">复制链接</button>
+							<button id="copyLink" data-clipboard-target="#linkText" class="btn btn-primary">复制链接</button>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-9">
+						<div class="col-sm-8">
 							<p class="text-muted">可以将链接发送给你的QQ等好友</p>
 						</div>
-						<div class="col-sm-3">
-							<!-- <div class="alert alert-success">
-								<strong>成功!</strong> 指定操作成功提示信息。
-							</div> -->
+						
+					</div>
+					<div id="copyInfo">
+						<div class="alert alert-success" id="copySuccess">
+							<strong>复制成功!</strong>
+						</div>
+						<div class="alert alert-danger" id="copyError">
+							<strong>复制失败!</strong>
 						</div>
 					</div>
-					
 				</div>
 				<!-- 模态框底部 -->
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-primary" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-outline-primary refresh" data-dismiss="modal" >关闭</button>
 				</div>
 			</div>
 		</div>

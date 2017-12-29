@@ -183,3 +183,6 @@ a.fileName:hover {
 .home_icon{
 	width: 120px;
 }
+#copyInfo .alert {
+	display:none
+}
