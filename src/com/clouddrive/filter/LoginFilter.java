@@ -48,9 +48,9 @@ public class LoginFilter implements Filter {
 		String userName = (String) session.getAttribute("name");
 		if(userName == null) {
 			System.out.println(loginPath);
-			httpResp.sendRedirect(loginPath);
-//			request.setAttribute("message", "请登录。");
-//			request.getRequestDispatcher(loginPath).forward(httpReq, httpResp);
+			//httpResp.sendRedirect("Home");
+			request.setAttribute("message", "请登录");
+			request.getRequestDispatcher("Home").forward(httpReq, httpResp);
 		}
 		
 		// pass the request along the filter chain

@@ -9,10 +9,12 @@ public class LoginBizImpl implements LoginBiz {
 
 	@Override
 	public User login(String userName, String pwd) {
+		System.out.println("loginbiz:");
+		System.out.println("userName:" + userName);
 		User user = userDao.findUserByName(userName);
-		System.out.println(user.getPwd());
-		System.out.println(pwd);
 		if (user != null && user.getPwd().equals(pwd)) {
+			System.out.println(user.getPwd());
+			System.out.println(pwd);
 			return user;
 		}
 		return null;

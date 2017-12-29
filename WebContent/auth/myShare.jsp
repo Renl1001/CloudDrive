@@ -9,11 +9,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>CloudDrive</title>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet"
-        type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/jquery.zclip.js" type="text/javascript"></script>
@@ -31,7 +31,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-sm bg-light navbar-light main-navigation">
+	<nav class="navbar navbar-expand-sm main-navigation">
 		<div class="container">
 			<a class="navbar-brand" href="#">
 				<img src="img/logo.gif" alt="logo" style="width:40px;">
@@ -39,13 +39,13 @@
 			</a>
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="home.jsp">首页</a>
+					<a class="nav-link" href="Home">首页</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="ListFiles">网盘</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link nav-current" href="#">分享</a>
+					<a class="nav-link nav-current" href="ShareManage">分享</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">收件夹</a>

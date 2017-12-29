@@ -131,7 +131,7 @@
     <filter-class>com.clouddrive.filter.LoginFilter</filter-class>
     <init-param>
       <param-name>LOGIN_PATH</param-name>
-      <param-value>/CloudDrive/home.jsp</param-value>
+      <param-value>/CloudDrive/Home</param-value>
     </init-param>
   </filter>
   <filter-mapping>

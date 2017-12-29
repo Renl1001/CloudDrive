@@ -15,16 +15,19 @@
 
 	<link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="/themes/fa/theme.min.css">
+	<link rel="stylesheet" href="themes/fa/theme.min.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 
 	<script src="js/fileinput.min.js" type="text/javascript"></script>
 	<script src="themes/fa/theme.min.js" type="text/javascript"></script>
-	<script src="js/main.js" type="text/javascript"></script>
 	<script src="js/locales/zh.js" type="text/javascript"></script>
 	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
 	<script src="js/signupcheck.js" type="text/javascript"></script>
 	<script src="js/logincheck.js" type="text/javascript"></script>
+	<script src="js/main.js" type="text/javascript"></script>
+	<!-- <script type="text/javascript">
+		
+	</script> -->
 </head>
 
 <body>
@@ -35,7 +38,7 @@
 			</a>
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link nav-current" href="home.jsp">首页</a>
+					<a class="nav-link nav-current" href="Home">首页</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="ListFiles">网盘</a>
@@ -80,6 +83,8 @@
 			</ul>
 		</div>
 	</nav>
+	
+	<!-- 登录模态框  -->
 	<div class="modal fade" id="login">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -112,11 +117,19 @@
 					<div class="modal-footer">
 						<input type="submit" class="btn btn-primary" value="登录">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-					</div>	 
+						 
+					</div>
+					<c:if test="${not empty message }">
+						<div class="alert alert-danger" id="loginError">
+							<strong>${message }</strong>
+						</div>	
+					</c:if>
 				</form>
 			</div>
 		</div>
 	</div>
+	
+	<!-- 注册模态框  -->
 	<div class="modal fade" id="signup">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -146,7 +159,12 @@
 						<input type="submit" class="btn btn-primary" value="注册">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 					</div>
-				</form>	 
+					<c:if test="${not empty rmessage }">
+						<div class="alert alert-danger" id="registerError">
+							<strong>${rmessage }</strong> 
+						</div>	
+					</c:if>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -203,79 +221,12 @@
 					</div>	
 				</div> <!--card-container -->	
 			</c:forEach>
-				<%-- <tr>
-					<td><input name="subBox" type="checkbox" /></td>								
-					<c:url value="DelShare" var="delURL">
-						<c:param name="key" value="${share.key}"></c:param>
-					</c:url>
-					<td>
-						<img src="img/icon/${share.type }.png" alt="logo" class="fileIcon">
-						<a href="Share?key=${share.key }" class="fileName">${share.fileName}</a>&nbsp&nbsp
-					</td>
-					<td>
-						<div class="disabled">
-							<a href="${delURL }" title="取消分享"><i class="fa fa-ban fa-lg"></i></a>
-						</div>  
-					</td>
-					<td>${share.downloads }</td>
-					<td>${share.showSize }</td>
-					<td>${share.shareTime }</td>
-				</tr>
-			</c:forEach>
-			
-			<div class="card-container col-sm-4">
-				<div class="card">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-xl-3"></div>
-							<div class="col-xl-6" >
-								<img  class="home_icon" src="img/home_test_icon.png" > 
-							</div>	
-						</div>
-						<div class="row">
-							<div class="col-sm-2"></div>
-							<div class="col-sm-10">
-								<div class="row">
-									<div class="col-sm-4">
-										文件名 
-									</div>
-									<div class="col-sm-8">
-										java.txt
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-4">
-										热度 
-									</div>
-									<div class="col-sm-8">
-										90
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-4">
-										大小
-									</div>
-									<div class="col-sm-8">
-										934k
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-4">
-										分享者
-									</div>
-									<div class="col-sm-8">
-										admin
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>	
-				</div>	
-			</div> <!--card-container -->	 --%>
 			
 		</div>	
 	</div>
-	
+
+
+
 </body>
 
 </html>

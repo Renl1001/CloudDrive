@@ -22,8 +22,10 @@ public class HomeListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		req.setCharacterEncoding("UTF-8");
+		String message = (String)req.getAttribute("message");
 		ShareDaoImpl shareDaoImpl = new ShareDaoImpl();
 		Vector<Share> shares = shareDaoImpl.getHotShare();
+		req.setAttribute("message", message);
 		req.setAttribute("shares", shares);
 		req.getRequestDispatcher("home.jsp").forward(req, resp);
 	}

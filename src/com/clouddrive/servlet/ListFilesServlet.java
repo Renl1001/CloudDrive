@@ -21,10 +21,12 @@ public class ListFilesServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		String userName = (String)session.getAttribute("name");
-		// 用户名失效，跳转到登录界面
+		// 用户名失效
 		if(userName == null) {
-			resp.sendRedirect("home.jsp");
-			return;
+			req.setAttribute("message", "请登录");
+			req.getRequestDispatcher("Home").forward(req, resp);
+			/*resp.sendRedirect("DoLogin");*/
+			return ;
 		}
 		
 		String path = (String)req.getParameter("path");

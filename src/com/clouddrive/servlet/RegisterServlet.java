@@ -37,9 +37,9 @@ public class RegisterServlet extends HttpServlet {
 			resp.sendRedirect("ListFiles");
 			return;
 		}else{
-			String message = "用户名不存在或密码错误！";
-			req.setAttribute("message", message);
-			
+			String message = "用户名已存在";
+			req.setAttribute("rmessage", message);
+			req.getRequestDispatcher("Home").forward(req, resp);
 			return;
 		}
 	}

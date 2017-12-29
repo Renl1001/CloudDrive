@@ -15,7 +15,7 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		session.removeAttribute("name");
 		session.removeAttribute("path");
-		resp.sendRedirect("/CloudDrive/home.jsp");
+		resp.sendRedirect("Home");
 	}
 	
 	@Override

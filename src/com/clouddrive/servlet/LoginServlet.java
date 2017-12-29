@@ -16,26 +16,32 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
+		String message = (String)req.getAttribute("message");
+		if(message != null && message.equals("noPrimse")) {
+			req.setAttribute("message", "请登录");
+			req.getRequestDispatcher("Home").forward(req, resp);
+		}
 		
 		String userName = req.getParameter("userName");
 		String pwd = req.getParameter("pwd");
 		
-		System.out.println("doLogin");
+		System.out.println("DoLogin");
 		System.out.println("userName:"+userName);
-		System.out.println("password"+pwd);
+		System.out.println("password:"+pwd);
 		
 		LoginBizImpl loginBiz = new LoginBizImpl();
 		User user = loginBiz.login(userName, pwd);
 		
 		if(user == null) {
-			String message = "用户名不存在或密码错误！";
-			req.setAttribute("message", message);
-			req.getRequestDispatcher("/home.jsp").forward(req, resp);
+			req.setAttribute("message", "用户名或密码错误！");
+			req.getRequestDispatcher("Home").forward(req, resp);
 		} else {
+			// 登录成功
 			HttpSession session = req.getSession();
 			session.setAttribute("name", userName);
 			resp.sendRedirect("ListFiles");
-			//req.getRequestDispatcher("ListFileServlet").forward(req, resp);
 		}
 	}
 	

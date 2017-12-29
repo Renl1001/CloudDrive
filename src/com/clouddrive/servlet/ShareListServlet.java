@@ -31,7 +31,9 @@ public class ShareListServlet extends HttpServlet {
 		System.out.println("ShareManage:");
 		
 		if(userName == null) {
-			resp.sendRedirect("home.jsp");
+			req.setAttribute("message", "请登录");
+			req.getRequestDispatcher("Home").forward(req, resp);
+			/*resp.sendRedirect("DoLogin");*/
 			return ;
 		}
 		

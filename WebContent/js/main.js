@@ -1,4 +1,10 @@
 $(function () {
+	if($("#loginError")[0]) {
+		$("#login").modal("show");
+	}
+	if($("#registerError")[0]) {
+		$("#signup").modal("show");
+	}
     $("#uploadFile").fileinput({
         theme: 'fa',
         language: 'zh',
@@ -29,9 +35,9 @@ $(function () {
         }
     });
 
-    
-    
     $("#refresh").click(function() {
     	window.location.href="ListFiles";
     });
+    
+    
 })
