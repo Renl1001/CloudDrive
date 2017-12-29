@@ -1,6 +1,7 @@
 package com.clouddrive.servlet;
 
 import java.io.IOException;
+import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.clouddrive.biz.impl.ShareManageBizImpl;
+import com.clouddrive.dao.impl.ShareDaoImpl;
 import com.clouddrive.entity.Share;
 
 /**
@@ -30,6 +32,9 @@ public class ShareServlet extends HttpServlet {
 		ShareManageBizImpl shareManage = new ShareManageBizImpl();
 		Share share = shareManage.getShareByKey(key);
 		
+		ShareDaoImpl shareDaoImpl = new ShareDaoImpl();
+		Vector<Share> shares = shareDaoImpl.getHotShare();
+		req.setAttribute("shares", shares);
 		req.setAttribute("share", share);
 		req.getRequestDispatcher("share.jsp").forward(req, resp);
 	}

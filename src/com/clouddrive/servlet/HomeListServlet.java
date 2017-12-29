@@ -23,6 +23,7 @@ public class HomeListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		req.setCharacterEncoding("UTF-8");
 		String message = (String)req.getAttribute("message");
+		
 		ShareDaoImpl shareDaoImpl = new ShareDaoImpl();
 		Vector<Share> shares = shareDaoImpl.getHotShare();
 		req.setAttribute("message", message);

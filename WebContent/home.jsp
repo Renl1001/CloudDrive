@@ -99,12 +99,12 @@
 							<div class="row">
 								<!-- <div class="col-sm-1"></div> -->
 								<div class="col-sm-12">
-									<div class="row">
+									<div class="row" style="padding-top:15px">
 										<div class="col-sm-3">
 											文件名 
 										</div>
 										<div class="col-sm-9 ellipsis">
-											<a href="Share?key=${share.key }" class="fileName" title="${share.fileName}">${share.fileName}</a>&nbsp&nbsp
+											<a href="Share?key=${share.key }" target="_blank" class="fileName" title="${share.fileName}">${share.fileName}</a>&nbsp&nbsp
 										</div>
 									</div>
 									<div class="row">

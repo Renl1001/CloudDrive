@@ -192,3 +192,17 @@ a.fileName:hover {
 	text-overflow:ellipsis;
    	overflow: hidden;
 }
+
+.icon25 {
+	width: 25px; 
+	margin: 5px;
+}
+
+.item{
+	padding: 5px 5px;
+}
+
+.commend-desc {
+	padding-left: 5px;
+	font-size: 10px;
+}

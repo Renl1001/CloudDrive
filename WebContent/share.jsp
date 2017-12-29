@@ -34,13 +34,7 @@
 					<a class="nav-link" href="Home">首页</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="ListFiles">网盘</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link nav-current" href="ShareManage">分享</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">收件夹</a>
 				</li>
 			</ul>
 		</div>
@@ -97,19 +91,18 @@
 			<div class="card col-sm-3">
 				<div class="card-body">
 					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
-					热门资源<br>
+					
+					<c:forEach var="share" items="${shares}">
+						<div class="item">
+							<div class="commend-title ellipsis">
+								<img src="img/icon/${share.type }.png" alt="logo" class="icon25">
+								<a href="${downLoadURL}" class="fileName" target="_blank" title="${share.fileName}">${share.fileName}</a>
+							</div>
+							<div class="commend-desc">
+								<small>下载量：${share.downloads }</small>
+							</div>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
