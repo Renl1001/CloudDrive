@@ -47,6 +47,14 @@
     <url-pattern>/UpLoad</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>HomeListServlet</servlet-name>
+    <servlet-class>com.clouddrive.servlet.HomeListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HomeListServlet</servlet-name>
+    <url-pattern>/Home</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>ListFilesServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.ListFilesServlet</servlet-class>
   </servlet>
@@ -110,7 +118,6 @@
     <servlet-name>DelShareServlet</servlet-name>
     <url-pattern>/DelShare</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>DelFileServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.DelFileServlet</servlet-class>
@@ -119,7 +126,6 @@
     <servlet-name>DelFileServlet</servlet-name>
     <url-pattern>/DelFiles</url-pattern>
   </servlet-mapping>
-  
   <filter>
     <filter-name>loginFilter</filter-name>
     <filter-class>com.clouddrive.filter.LoginFilter</filter-class>

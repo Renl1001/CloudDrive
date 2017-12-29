@@ -173,4 +173,30 @@ public class ShareDaoImpl extends BaseDao implements ShareDao {
 		return (String) this.executeQuery(getUserByNameProcessor, sql, params);
 	}
 
+	@Override
+	public Vector<Share> getHotShare() {
+		String sql = "select * from share order by downloads desc limit 12";
+		Object[] params = { };
+		RSProcessor getUsersByNameProcessor = new RSProcessor() {
+			public Object process(ResultSet rs) throws SQLException {
+				Vector<Share> shares = new Vector<Share>();
+				while (rs.next()) {
+					
+					String user = rs.getString("user");
+					String uuidName = rs.getString("uuidName");
+					String url = rs.getString("url");
+					String shareTime = rs.getString("shareTime");
+					String key = rs.getString("keyword");
+					int downloads = rs.getInt("downloads");
+					long size = rs.getLong("size");
+					Share share = new Share(user, uuidName, url, shareTime, key, downloads, size);
+					shares.add(share);
+				}
+				return shares;
+			}
+		};
+
+		return (Vector<Share>) this.executeQuery(getUsersByNameProcessor, sql, params);
+	}
+
 }

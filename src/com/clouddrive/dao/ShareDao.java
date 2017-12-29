@@ -10,6 +10,7 @@ public interface ShareDao {
 	public int countShareByUuidName(String uuidName);
 	public Share findShareByKey(String key);
 	public Vector<Share> findShareByUser(String name);
+	public Vector<Share> getHotShare();
 
 	// 添加分享
 	public int insert(Share share);

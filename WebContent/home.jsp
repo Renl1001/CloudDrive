@@ -152,132 +152,130 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="card-container col-sm-4">
-				<div class="card">
-					<div class="card-body">
-						<div class="row">
-							<div class="card col-sm-4">
-								<img src="img/logo.gif" alt="logo" style="width:40px;"> 
-							</div>	
-							<div class="card col-sm-8">
-								<div class="row">
-									<div class=" col-sm-6">
-										<div>文件名:</div>
-										<div>大小:</div>
-										<div>热度:</div>
-									</div>
-									<div class=" col-sm-6">
-										<div>hello.c</div>
-										<div>1024kb</div>
-										<div>9000</div>
-									</div>		
+			<c:forEach var="share" items="${shares}">
+				<div class="card-container col-sm-4">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-xl-3"></div>
+								<div class="col-xl-6" >
+									<img  class="home_icon" src="img/icon/${share.type }.png" > 
 								</div>	
 							</div>
-							
-						</div>
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-11">
+									<div class="row">
+										<div class="col-sm-4">
+											文件名 
+										</div>
+										<div class="col-sm-8">
+											${share.fileName }
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											热度 
+										</div>
+										<div class="col-sm-8">
+											${share.downloads }
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											大小
+										</div>
+										<div class="col-sm-8">
+											${share.showSize }
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											分享者
+										</div>
+										<div class="col-sm-8">
+											${share.user }
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
 					</div>	
-				</div>
-			</div>
+				</div> <!--card-container -->	
+			</c:forEach>
+				<%-- <tr>
+					<td><input name="subBox" type="checkbox" /></td>								
+					<c:url value="DelShare" var="delURL">
+						<c:param name="key" value="${share.key}"></c:param>
+					</c:url>
+					<td>
+						<img src="img/icon/${share.type }.png" alt="logo" class="fileIcon">
+						<a href="Share?key=${share.key }" class="fileName">${share.fileName}</a>&nbsp&nbsp
+					</td>
+					<td>
+						<div class="disabled">
+							<a href="${delURL }" title="取消分享"><i class="fa fa-ban fa-lg"></i></a>
+						</div>  
+					</td>
+					<td>${share.downloads }</td>
+					<td>${share.showSize }</td>
+					<td>${share.shareTime }</td>
+				</tr>
+			</c:forEach>
 			
 			<div class="card-container col-sm-4">
 				<div class="card">
 					<div class="card-body">
 						<div class="row">
-							<div class="card col-sm-4">
-								<img src="img/logo.gif" alt="logo" style="width:40px;"> 
+							<div class="col-xl-3"></div>
+							<div class="col-xl-6" >
+								<img  class="home_icon" src="img/home_test_icon.png" > 
 							</div>	
-							<div class="card col-sm-8">
-								<div class="row">
-									<div class=" col-sm-6">
-										<div>文件名:</div>
-										<div>大小:</div>
-										<div>热度:</div>
-									</div>
-									<div class=" col-sm-6">
-										<div>hello.c</div>
-										<div>1024kb</div>
-										<div>9000</div>
-									</div>		
-								</div>	
-							</div>
-							
 						</div>
-					</div>	
-				</div>
-			</div>
-			<div class="card-container col-sm-4">
-				<div class="card">
-					<div class="card-body">
 						<div class="row">
-							<div class="card col-sm-4">
-								<img src="img/logo.gif" alt="logo" style="width:40px;"> 
-							</div>	
-							<div class="card col-sm-8">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-10">
 								<div class="row">
-									<div class=" col-sm-6">
-										<div>文件名:</div>
-										<div>大小:</div>
-										<div>热度:</div>
+									<div class="col-sm-4">
+										文件名 
 									</div>
-									<div class=" col-sm-6">
-										<div>hello.c</div>
-										<div>1024kb</div>
-										<div>9000</div>
-									</div>		
-								</div>	
+									<div class="col-sm-8">
+										java.txt
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4">
+										热度 
+									</div>
+									<div class="col-sm-8">
+										90
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4">
+										大小
+									</div>
+									<div class="col-sm-8">
+										934k
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4">
+										分享者
+									</div>
+									<div class="col-sm-8">
+										admin
+									</div>
+								</div>
 							</div>
-							
 						</div>
 					</div>	
-				</div>
-			</div>
-			<div class="card-container col-sm-4">
-				<div class="card">
-					<div class="card-body">
-						<div class="row">
-							<div class="card col-sm-4">
-								<img src="img/logo.gif" alt="logo" style="width:40px;"> 
-							</div>	
-							<div class="card col-sm-8">
-								<div class="row">
-									<div class=" col-sm-6">
-										<div>文件名:</div>
-										<div>大小:</div>
-										<div>热度:</div>
-									</div>
-									<div class=" col-sm-6">
-										<div>hello.c</div>
-										<div>1024kb</div>
-										<div>9000</div>
-									</div>		
-								</div>	
-							</div>
-							
-						</div>
-					</div>	
-				</div>
-			</div>
+				</div>	
+			</div> <!--card-container -->	 --%>
 			
-			
-		</div>
+		</div>	
 	</div>
 	
 </body>
 
 </html>
-
-
-<!-- <form method="post" action="DoLogin">
-  		<table>
-  			<tr>
-  				<td>用户名:</td><td><input type="text" id="userName" name="userName"></td>
-  			</tr>
-  			<tr>
-  				<td>密码:</td><td><input type="password" id="pwd" name="pwd"></td>
-  			</tr>
-  			<tr><td><span id="errorInfo"></span></td></tr>
-  			<tr>
-  				<td><input type="submit" value="登录"></td>
-  			</tr>
-  		</table>
-  	</form> -->
