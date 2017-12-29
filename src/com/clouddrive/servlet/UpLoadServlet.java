@@ -8,9 +8,6 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.stream.JsonGenerator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +22,8 @@ import com.clouddrive.dao.impl.FileDaoImpl;
 import com.clouddrive.entity.CurrentTime;
 import com.clouddrive.entity.FileMessage;
 import com.clouddrive.entity.Type;
+
+import net.sf.json.JSONObject;
 
 @SuppressWarnings("serial")
 public class UpLoadServlet extends HttpServlet {
@@ -41,7 +40,6 @@ public class UpLoadServlet extends HttpServlet {
 		//用户保存的文件路径
 		String savePath = "";
 		
-		String message = "";
 		try{
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			ServletFileUpload upload = new ServletFileUpload(factory);
@@ -96,7 +94,6 @@ public class UpLoadServlet extends HttpServlet {
 					out.close();
 					long fileSize = item.getSize();
 					item.delete();
-					message = "文件上传成功!";
 					System.out.println("文件上传成功!");
 					System.out.println("文件大小："+fileSize);
 					String type = Type.getType(fileName);
@@ -110,19 +107,23 @@ public class UpLoadServlet extends HttpServlet {
 				}
 			}
 		} catch(Exception e) {
-			message = "文件上传失败!";
+			PrintWriter out = resp.getWriter();
+			JSONObject json = new JSONObject();
+			json.put("error", "上传失败！");
+			out.println(json);
+	        out.close();
 			System.out.println("文件上传失败!");
 			e.printStackTrace();
+			return;
 		}
 		System.out.println("yes2");
+		
+		
 		PrintWriter out = resp.getWriter();
-		JsonGenerator generator = Json.createGenerator(out);
-		generator.writeStartObject().write("result", "success").writeEnd();
-        out.flush();
+		JSONObject json = new JSONObject();
+		json.put("success", "上传成功！");
+		out.println(json);
         out.close();
-//		req.setAttribute("message", message);
-//		resp.sendRedirect("ListFiles");
-		//req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
 	
 	@Override

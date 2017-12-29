@@ -17,8 +17,9 @@ public class MkDirServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		String fileName = req.getParameter("folderName");
-		String path = req.getParameter("path");
+		
 		HttpSession session = req.getSession();
+		String path = (String)session.getAttribute("path");
 		String userName = (String)session.getAttribute("name");
 		String savePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
 		
@@ -27,7 +28,6 @@ public class MkDirServlet extends HttpServlet {
 			// 创建成功
 		}
 		
-		session.setAttribute("path", path);
 		resp.sendRedirect("ListFiles");
 	}
 
