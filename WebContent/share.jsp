@@ -88,43 +88,38 @@
 						找不到资源
 					</c:when>
 					<c:otherwise>
-						<div class="row">
-							<div class="col-sm-10">
-								<div class="container">
-									${share.user } 的分享
-								</div>
-							</div>
-							<div class="col-sm-2 text-right">
-								<c:url value="/DownLoad" var="downLoadURL">
-									<c:param name="fileName" value="${share.uuidName}"></c:param>
-									<c:param name="url" value="${share.url }"></c:param>
-									<c:param name="key" value="${share.key }"></c:param>
-								</c:url>
-								<a href="${downLoadURL}">
-									<button type="button" class="btn btn-outline-primary" id="downloadBtn">
-										<i class="fa fa-download fa-lg"></i> 下载
-									</button>
-								</a>
-							</div>
+						<div class="container">
+							${share.user } 的分享
 						</div>
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th><input id="CheckAll" type="checkbox" /></th>
 									<th>文件名</th>
 									<th>大小</th>
 									<th>分享时间</th>
+									<th> </th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td><input name="subBox" type="checkbox" /></td>
 									<td>
 										<img src="img/icon/${share.type }.png" alt="logo" class="fileIcon">
 										<a href="${downLoadURL}" class="fileName">${share.fileName}</a>&nbsp&nbsp
 									</td>
 									<td>${share.showSize }</td>
 									<td>${share.shareTime }</td>
+									<td>
+										<c:url value="/DownLoad" var="downLoadURL">
+											<c:param name="fileName" value="${share.uuidName}"></c:param>
+											<c:param name="url" value="${share.url }"></c:param>
+											<c:param name="key" value="${share.key }"></c:param>
+										</c:url>
+										<a href="${downLoadURL}">
+											<button type="button" class="btn btn-outline-primary" id="downloadBtn">
+												<i class="fa fa-download fa-lg"></i> 下载
+											</button>
+										</a>
+									</td>
 								</tr>
 							</tbody>
 						</table>

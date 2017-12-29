@@ -8,6 +8,11 @@ $(function () {
         maxFileCount: 10
     });
 
+    $('#uploadFile').on('filebatchuploadcomplete', function(event, files, extra) {
+        $("#refresh").text("确定");
+        console.log('File batch upload complete');
+    });
+
     $("#CheckAll").click(function () {
         if (this.checked)
             $(':checkbox').attr('checked', true);
@@ -23,8 +28,10 @@ $(function () {
             $(this).find(".disabled").hide();
         }
     });
+
     
-    $(".refresh").click(function() {
+    
+    $("#refresh").click(function() {
     	window.location.href="ListFiles";
     });
 })
