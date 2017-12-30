@@ -4,13 +4,13 @@ $(function () {
 		rules: {
 			folderName: {
 				required: true,
-				minlength: 4
+				minlength: 1
 			}
 		},
 		messages: {
 			folderName: {
 				required: "文件夹名不能为空",
-				minlength: "文件夹名不能为空"
+				minlength: "文件夹名最少一位"
 			}
 		},
 		errorElement: "em",

@@ -54,7 +54,7 @@
 						${name }
 					</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="/CloudDrive/DoLogout">退出登录</a>
+						<a class="dropdown-item" href="DoLogout">退出登录</a>
 					</div>
 				</li>
 			</ul>
@@ -65,7 +65,7 @@
 		<div class="card">
 			<div class="card-body">
 				<c:choose>
-					<c:when test="${empty inboxs }">
+					<c:when test="${empty inboxBaseURL }">
 						<ul class="breadcrumb">
 							<a href="InboxManage">收件夹</a>
 							<span class="gt">></span>
@@ -127,17 +127,16 @@
 									<tr>								
 										<c:url value="DelInbox" var="delURL">
 											<c:param name="key" value="${inbox.key}"></c:param>
+											<c:param name="path" value="${inbox.path}"></c:param>
 										</c:url>
 										<td>
 											<img src="img/icon/folder.png" alt="logo" class="fileIcon">
 											<a href="InboxManage?path=inbox/${inbox.inboxName }" class="fileName">${inbox.inboxName }</a>
 										</td>
 										<td>
-											
 											<a href="#" title="收件地址" data-toggle="popover" data-placement="left" data-content="${inboxBaseURL }?key=${inbox.key }"><i class="fa fa-link fa-lg"></i></a>
 											&nbsp&nbsp
 											<a href="${delURL }" title="删除收件夹"><i class="fa fa-trash-o fa-lg"></i></a>
-											  
 										</td>
 										<td>${inbox.startTime }</td>
 									</tr>
@@ -153,7 +152,7 @@
 	<div class="modal fade" id="newFolder">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
-				<form role="form" action="MkInbox" method="post">
+				<form role="form" id="mkinboxfolder" action="MkInbox" method="post">
 					<div class="modal-header">
 						<h4 class="modal-title">新建收件夹</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -162,7 +161,7 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="inboxName">收件夹名:</label>
-    						<input type="text" class="form-control" id="inboxName">
+    						<input type="text" class="form-control" id="inboxName" name="inboxName">
 						</div>
 						
 						<div class="form-group">
@@ -174,6 +173,11 @@
 						<input type="button" class="btn btn-info" value="新建" id="mkInbox">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
 					</div>
+					
+					<div class="alert alert-danger" id="createInboxInfo">
+						<strong></strong>
+					</div>	
+					
 				</form>
 			</div>
 		</div>

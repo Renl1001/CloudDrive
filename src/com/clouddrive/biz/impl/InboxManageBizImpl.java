@@ -12,7 +12,7 @@ public class InboxManageBizImpl implements InboxManageBiz {
 	private InboxDaoImpl inboxDaoImpl = new InboxDaoImpl(); 
 	
 	@Override
-	public String insertShare(String userName, String uuidName, String path, String illustrate) {
+	public String insertInbox(String userName, String uuidName, String path, String illustrate) {
 		String currentTime = new CurrentTime().getDateString();
 		String key  = new CreateKey().createPassWord(8);
 		

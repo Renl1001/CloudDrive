@@ -1,5 +1,4 @@
 $(function () {
-
     $("#inboxUpload").fileinput({
         theme: 'fa',
         language: 'zh',
@@ -25,7 +24,6 @@ $(function () {
             inboxName: $("#inboxName").val(),
             illustrate: $("#illustrate").val()
         }, handleShowLink);
-        $("#newFolder").modal("hide");
     });
     $('#inboxLinkModal').on("hide.bs.modal", function() {    	
     	window.location.href="InboxManage";
@@ -41,7 +39,14 @@ $(function () {
     });
     $('[data-toggle="popover"]').popover();   
 });
-function handleShowLink(data) {
-    $("#linkText").val(data);
-    $("#inboxLinkModal").modal("show");
+function handleShowLink(results) {
+	var json = jQuery.parseJSON(results); 
+	if(json.message != null) {
+		$("#createInboxInfo strong").text(json.message);
+		$("#createInboxInfo").show();
+	} else {
+		$("#newFolder").modal("hide");
+		$("#linkText").val(json.link);
+	    $("#inboxLinkModal").modal("show");
+	}
 };

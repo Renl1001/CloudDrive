@@ -150,6 +150,14 @@
     <servlet-name>InboxServlet</servlet-name>
     <url-pattern>/Inbox</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>DelInboxServlet</servlet-name>
+    <servlet-class>com.clouddrive.servlet.DelInboxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelInboxServlet</servlet-name>
+    <url-pattern>/DelInbox</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>loginFilter</filter-name>
     <filter-class>com.clouddrive.filter.LoginFilter</filter-class>

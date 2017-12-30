@@ -216,3 +216,7 @@ a.fileName:hover {
 img.logo {
 	width: 55px;
 }
+
+#createInboxInfo {
+	display:none;
+}
