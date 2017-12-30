@@ -111,6 +111,14 @@
     <url-pattern>/ShareManage</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>InboxListServlet</servlet-name>
+    <servlet-class>com.clouddrive.servlet.InboxListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InboxListServlet</servlet-name>
+    <url-pattern>/InboxManage</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>DelShareServlet</servlet-name>
     <servlet-class>com.clouddrive.servlet.DelShareServlet</servlet-class>
   </servlet>
@@ -125,6 +133,22 @@
   <servlet-mapping>
     <servlet-name>DelFileServlet</servlet-name>
     <url-pattern>/DelFiles</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CreateInboxServlet</servlet-name>
+    <servlet-class>com.clouddrive.servlet.CreateInboxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateInboxServlet</servlet-name>
+    <url-pattern>/CreateInbox</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>InboxServlet</servlet-name>
+    <servlet-class>com.clouddrive.servlet.InboxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InboxServlet</servlet-name>
+    <url-pattern>/Inbox</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>loginFilter</filter-name>
