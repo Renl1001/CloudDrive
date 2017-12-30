@@ -30,7 +30,7 @@
 	<nav class="navbar navbar-expand-sm main-navigation">
 		<div class="container">
 			<a class="navbar-brand" href="#">
-				<img src="img/logo.gif" alt="logo" style="width:40px;">
+				<img src="img/logo.png" alt="logo" class="logo">
 				CloudDrive
 			</a>
 			<ul class="navbar-nav">
@@ -47,7 +47,7 @@
 					<a class="nav-link nav-current" href="InboxManage">收件夹</a>
 				</li>
 				<li class="nav-item">
-					<img src="img/head.jpg" class="rounded-circle" alt="head" style="width:40px;">
+					<img src="img/avatar.gif" class="rounded-circle" alt="head" style="width:40px;">
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -64,37 +64,88 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
-				<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#newFolder">
-					<i class="fa fa-folder-o fa-lg"></i> 新建收件夹
-				</button>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>文件夹</th>
-							<th>  </th>
-							<th>发布时间</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="inbox" items="${inboxs}">
-							<tr>								
-								<c:url value="DelInbox" var="delURL">
-									<c:param name="key" value="${inbox.key}"></c:param>
-								</c:url>
-								<td>
-									<img src="img/icon/folder.png" alt="logo" class="fileIcon">
-									<a href="Inbox?key=${inbox.key }" target="_blank" class="fileName">${inbox.inboxName }</a>
-								</td>
-								<td>
-									<div class="disabled">
-										<a href="${delURL }" title="删除收件夹"><i class="fa fa-ban fa-lg"></i></a>
-									</div>  
-								</td>
-								<td>${inbox.startTime }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+				<c:choose>
+					<c:when test="${empty inboxs }">
+						<ul class="breadcrumb">
+							<a href="InboxManage">收件夹</a>
+							<span class="gt">></span>
+							${path }
+						</ul>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th><input id="CheckAll" type="checkbox" /></th>
+									<th>文件名</th>
+									<th>  </th>
+									<th>大小</th>
+									<th>上传日期</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="file" items="${files}">
+									<tr>
+										<td><input name="subBox" type="checkbox" /></td>
+										<c:url value="/DownLoad" var="downLoadURL">
+											<c:param name="fileName" value="${file.uuidName}"></c:param>
+											<c:param name="path" value="${file.path }"></c:param>
+										</c:url>
+										<c:url value="/DelFile" var="delURL">
+											<c:param name="fileName" value="${file.uuidName}"></c:param>
+											<c:param name="path" value="${file.path }"></c:param>
+										</c:url>
+										<td>
+											<img src="img/icon/${file.type }.png" alt="logo" class="fileIcon">
+											<a href="${downLoadURL}" class="fileName">${file.fileName}</a>
+										</td>
+										<td>
+											<div class="disabled">
+												<a href="${downLoadURL }" title="下载"><i class="fa fa-download fa-lg"></i></a>  
+												<a href="${delURL }" title="删除" ><i class="fa fa-trash-o fa-lg"></i></a>
+											</div>
+										</td>
+										<td>${file.showSize }</td>
+										<td>${file.updateTime }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#newFolder">
+							<i class="fa fa-folder-o fa-lg"></i> 新建收件夹
+						</button>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>文件夹</th>
+									<th>  </th>
+									<th>发布时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="inbox" items="${inboxs}">
+									<tr>								
+										<c:url value="DelInbox" var="delURL">
+											<c:param name="key" value="${inbox.key}"></c:param>
+										</c:url>
+										<td>
+											<img src="img/icon/folder.png" alt="logo" class="fileIcon">
+											<a href="InboxManage?path=inbox/${inbox.inboxName }" class="fileName">${inbox.inboxName }</a>
+										</td>
+										<td>
+											
+											<a href="#" title="收件地址" data-toggle="popover" data-placement="left" data-content="${inboxBaseURL }?key=${inbox.key }"><i class="fa fa-link fa-lg"></i></a>
+											&nbsp&nbsp
+											<a href="${delURL }" title="删除收件夹"><i class="fa fa-trash-o fa-lg"></i></a>
+											  
+										</td>
+										<td>${inbox.startTime }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

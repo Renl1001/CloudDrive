@@ -32,7 +32,7 @@
 	<nav class="navbar navbar-expand-sm main-navigation">
 		<div class="container">
 			<a class="navbar-brand" href="#">
-				<img src="img/logo.gif" alt="logo" style="width:40px;">
+				<img src="img/logo.png" alt="logo" class="logo">
 				CloudDrive
 			</a>
 			<ul class="navbar-nav">
@@ -46,10 +46,10 @@
 					<a class="nav-link nav-current" href="ShareManage">我的分享</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">收件夹</a>
+					<a class="nav-link" href="InboxManage">收件夹</a>
 				</li>
 				<li class="nav-item">
-					<img src="img/head.jpg" class="rounded-circle" alt="head" style="width:40px;">
+					<img src="img/avatar.gif" class="rounded-circle" alt="head" style="width:40px;">
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">

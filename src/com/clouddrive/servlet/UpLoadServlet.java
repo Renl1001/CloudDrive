@@ -35,6 +35,7 @@ public class UpLoadServlet extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String userName = (String)session.getAttribute("name");
+		String preName = "";
 		
 		String path = (String)session.getAttribute("path");
 		//用户保存的文件路径
@@ -52,6 +53,8 @@ public class UpLoadServlet extends HttpServlet {
 				return ;
 			}
 			List<FileItem> fileList = upload.parseRequest(req);
+			FileItem fileItem = null;
+			boolean isInbox = false;
 			for(FileItem item : fileList) {
 				// 普通数据项
 				if(item.isFormField()) {
@@ -60,59 +63,70 @@ public class UpLoadServlet extends HttpServlet {
 					System.out.println(name+"="+value);
 					if(name.equals("path")) {
 						path = value;
-						savePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
-						System.out.println("文件上传路径：");
-						System.out.println(savePath);
-						File folder = new File(savePath);
-						
-						if(!folder.exists() || !folder.isDirectory()) {
-							System.out.println(savePath+"目录不存在，需要创建");
-							folder.mkdirs();
+					} else if(name.equals("idTF")) {
+						if(!value.equals("")) {
+							preName = preName + value + "_";
 						}
+					} else if(name.equals("nameTF")) {
+						if(!value.equals("")) {
+							preName = preName + value + "_";
+						}
+					} else if(name.equals("userName")) {
+						isInbox = true;
+						userName = value;
 					}
 				} else {
-					// 获取文件名
-					String fileName = item.getName();
-					System.out.println(fileName);
-					if(fileName == null || fileName.trim().equals("")) {
-						continue;
-					}
-					// 处理获取到的上传文件的文件名的路径部分，只保留文件名部分
-					fileName = fileName.substring(fileName.lastIndexOf("/")+1);
-					
-					// 添加UUID
-					String uuidName = makeFileName(fileName);
-					savePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
-					
-					File folder = new File(savePath);
-					
-					if(!folder.exists() || !folder.isDirectory()) {
-						System.out.println(savePath+"目录不存在，需要创建");
-						folder.mkdirs();
-					}
-					InputStream in = item.getInputStream();
-					FileOutputStream out = new FileOutputStream(savePath+"/"+uuidName);
-					byte buffer[] = new byte[1024];
-					int len = 0;
-					while((len=in.read(buffer)) > 0) {
-						out.write(buffer,0,len);
-					}
-					in.close();
-					out.close();
-					long fileSize = item.getSize();
-					item.delete();
-					System.out.println("文件上传成功!");
-					System.out.println("文件大小："+fileSize);
-					String type = Type.getType(fileName);
-					
-					String updateTime = new CurrentTime().getDateString();
-					FileMessage fileMessage = new FileMessage(fileName, uuidName, updateTime, type, savePath, userName, fileSize);
-					
-					FileDaoImpl fileDaoImpl = new FileDaoImpl();
-					fileDaoImpl.insert(fileMessage);
-					System.out.println("数据库操作成功");
+					fileItem = item;
 				}
 			}
+			// 获取文件名
+			String fileName = fileItem.getName();
+			System.out.println(fileName);
+			if(fileName == null || fileName.trim().equals("")) {
+				PrintWriter out = resp.getWriter();
+				JSONObject json = new JSONObject();
+				json.put("error", "文件名为空！");
+				out.println(json);
+		        out.close();
+				return;
+			}
+			// 处理获取到的上传文件的文件名的路径部分，只保留文件名部分
+			fileName = fileName.substring(fileName.lastIndexOf("/")+1);
+			fileName = preName+fileName;
+			// 添加UUID
+			String uuidName = makeFileName(fileName);
+			if(isInbox) {
+				userName = userName + "/inbox";
+			}
+			savePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
+			
+			File folder = new File(savePath);
+			
+			if(!folder.exists() || !folder.isDirectory()) {
+				System.out.println(savePath+"目录不存在，需要创建");
+				folder.mkdirs();
+			}
+			InputStream in = fileItem.getInputStream();
+			FileOutputStream out = new FileOutputStream(savePath+"/"+uuidName);
+			byte buffer[] = new byte[1024];
+			int len = 0;
+			while((len=in.read(buffer)) > 0) {
+				out.write(buffer,0,len);
+			}
+			in.close();
+			out.close();
+			long fileSize = fileItem.getSize();
+			fileItem.delete();
+			System.out.println("文件上传成功!");
+			System.out.println("文件大小："+fileSize);
+			String type = Type.getType(fileName);
+			
+			String updateTime = new CurrentTime().getDateString();
+			FileMessage fileMessage = new FileMessage(fileName, uuidName, updateTime, type, savePath, userName, fileSize);
+			
+			FileDaoImpl fileDaoImpl = new FileDaoImpl();
+			fileDaoImpl.insert(fileMessage);
+			System.out.println("数据库操作成功");
 		} catch(Exception e) {
 			PrintWriter out = resp.getWriter();
 			JSONObject json = new JSONObject();

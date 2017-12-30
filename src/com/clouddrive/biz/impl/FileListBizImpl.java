@@ -29,6 +29,9 @@ public class FileListBizImpl implements FileListBiz {
 					for (FileMessage file : fileDaoImpl.findFilesByTypeAndUser("pdf", userName)) {
 						files.add(file);
 					}
+					for (FileMessage file : fileDaoImpl.findFilesByTypeAndUser("txt", userName)) {
+						files.add(file);
+					}
 				} else {
 					files = fileDaoImpl.findFilesByTypeAndUser(type, userName);
 				}

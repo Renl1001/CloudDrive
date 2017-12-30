@@ -26,7 +26,7 @@
 	<nav class="navbar navbar-expand-sm main-navigation">
 		<div class="container">
 			<a class="navbar-brand" href="#">
-				<img src="img/logo.gif" alt="logo" style="width:40px;">
+				<img src="img/logo.png" alt="logo" class="logo">
 				CloudDrive
 			</a>
 			<ul class="navbar-nav">

@@ -17,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
+    <script src="js/inbox.js" type="text/javascript"></script> 
 	<script src="js/locales/zh.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		
@@ -26,7 +27,8 @@
 	<nav class="navbar navbar-expand-sm main-navigation">
 		<div class="container">
 			<a class="navbar-brand" href="#">
-				<img src="img/logo.gif" alt="logo" style="width: 40px;"> CloudDrive
+				<img src="img/logo.png" alt="logo" class="logo"> 
+				CloudDrive
 			</a>
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -44,22 +46,21 @@
 			<div class="card-body">
 				<form>
 					<div class="form-group">
-						<h1>${inbox.inboxName }</h1>
+						<h1 id="inboxName" user="${inbox.user }">${inbox.inboxName }</h1>
 					</div>
 					
 					<div class="form-group">
 						<p>${inbox.illustrate }</p>
 					</div>
 					<div class="form-group">
-						<label for="usr">学号:</label>
-						<input type="text" class="form-control-inline" id="usr">
-						<label for="pwd">姓名:</label>
-						<input type="text" class="form-control-inline" id="pwd">
+						<label>ID:</label>
+						<input type="text" class="form-control-inline" id="idTF">
+						<label>Name:</label>
+						<input type="text" class="form-control-inline" id="nameTF">
 					</div>
 					<div class="form-group">
-						<input type="file" name="txt_file" multiple  id="uploadFile" />
+						<input type="file" name="txt_file" multiple  id="inboxUpload" />
 					</div>
-					<button type="submit" class="btn btn-primary">提交</button>
 				</form>
 			</div>
 		</div>

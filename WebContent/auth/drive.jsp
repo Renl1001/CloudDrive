@@ -27,42 +27,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
-    <script src="js/locales/zh.js" type="text/javascript"></script>
+	<script src="js/locales/zh.js" type="text/javascript"></script>
+   	<script src="js/drive.js" type="text/javascript"></script>
+   	<script src="js/mkfoldercheck.js" type="text/javascript"></script>
    	<script type="text/javascript">
-		$(function() {
-			$(".share").click(function() {
-				$.get($(this).attr("url"), {}, handleShowLink);
-			});
-			$("#sidebar").children().each(function() {
-				if($(this).hasClass("${path }")) {
-					//$("#sidebar .root").removeClass("list-group-item-primary");
-					$(this).addClass("bg-primary text-white");
-				} else {
-					$(this).addClass("list-group-item-action");
-				}
-			});
-			
-			var clipboard = new Clipboard('#copyLink');
-			clipboard.on('success', function(e) {
-				$("#copySuccess").show();
-			    e.clearSelection();
-			});
-			clipboard.on('error', function(e) {
-				$("#copyError").show();
-			});
-		});
-		function handleShowLink(data) {
-			$("#linkText").val(data);
-			$("#shareModal").modal("show");
-		};
-	</script>
+   	$(function() {
+   	    $("#sidebar").children().each(function() {
+   	        if($(this).hasClass("${path }")) {
+   	            //$("#sidebar .root").removeClass("list-group-item-primary");
+   	            $(this).addClass("bg-primary text-white");
+   	        } else {
+   	            $(this).addClass("list-group-item-action");
+   	        }
+   	    });
+   	});
+   	</script>
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-sm main-navigation">
 		<div class="container">
 			<a class="navbar-brand" href="#">
-				<img src="img/logo.gif" alt="logo" style="width:40px;">
+				<img src="img/logo.png" alt="logo" class="logo">
 				CloudDrive
 			</a>
 			<ul class="navbar-nav">
@@ -76,10 +62,10 @@
 					<a class="nav-link" href="ShareManage">我的分享</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">收件夹</a>
+					<a class="nav-link" href="InboxManage">收件夹</a>
 				</li>
 				<li class="nav-item">
-					<img src="img/head.jpg" class="rounded-circle" alt="head" style="width:40px;">
+					<img src="img/avatar.gif" class="rounded-circle" alt="head" style="width:40px;">
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -248,7 +234,7 @@
 	<div class="modal fade" id="newFolder">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form role="form" action="MkDir" method="post">
+				<form role="form" id="mkfolder" action="MkDir" method="post">
 					<div class="modal-header">
 						<h4 class="modal-title">新建文件夹</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>

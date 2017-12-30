@@ -1,24 +1,16 @@
 
-$(document).ready(function () {
-	$("#loginForm").validate({
+$(function () {
+	$("#mkfolder").validate({
 		rules: {
-			userName: {
-				required: true,
-				minlength: 4
-			},
-			pwd: {
+			folderName: {
 				required: true,
 				minlength: 4
 			}
 		},
 		messages: {
-			userName: {
-				required: "请输入用户名",
-				minlength: "用户名至少4个字符"
-			},
-			pwd: {
-				required: "请输入密码",
-				minlength: "密码长度不能小于4 个字母"
+			folderName: {
+				required: "文件夹名不能为空",
+				minlength: "文件夹名不能为空"
 			}
 		},
 		errorElement: "em",
@@ -57,7 +49,7 @@ $(document).ready(function () {
 		}
 	})
 })
-$("#loginForm").validate({
+$("#mkfolder").validate({
 	submitHandler: function (form) {
 		form.submit();
 	}

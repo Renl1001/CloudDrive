@@ -49,9 +49,12 @@ public class FileManageBizImpl implements FileManageBiz {
             }
             // 目录此时为空，可以删除
             String url = dir.getPath();
+            System.out.println(url);
 //            System.out.println("url:"+url);
-            String path = url.substring(0, url.lastIndexOf("/"));
-            String fileName = url.substring(url.lastIndexOf("/")+1);
+            String fileName = dir.getName();
+            String path = url.substring(0, url.lastIndexOf(fileName)-1);
+            System.out.println("fileName"+fileName);
+            System.out.println("path"+path);
             fileDaoImpl.delFolder(path, fileName);
             return dir.delete();
         } 
