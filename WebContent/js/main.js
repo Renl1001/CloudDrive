@@ -1,4 +1,5 @@
 $(function () {
+
 	if($("#loginError")[0]) {
 		$("#login").modal("show");
 	}
@@ -15,6 +16,26 @@ $(function () {
         maxFileCount: 10
     });
     
+	$('#CheckAll').click(function(){
+		if(this.checked){
+			$('tbody :checkbox').prop('checked',true);
+		}else{
+			$('tbody :checkbox').prop('checked',false);
+		}
+	});
+    
+	$('tbody :checkbox').click(function(){
+		var checkArry = document.getElementsByName("subBox");
+		for (var i = 0; i < checkArry.length; i++) {
+	        if(checkArry[i].checked == false){
+	            $('#CheckAll').prop('checked',false);
+	            return;
+	        }
+   		}
+		$('#CheckAll').prop('checked',true);
+
+	});
+	
     $("tbody tr").bind({
         mouseover: function () {
             $(this).find(".disabled").show();
@@ -23,27 +44,6 @@ $(function () {
             $(this).find(".disabled").hide();
         }
     });
-    
-    $('#CheckAll').click(function(){
-		if(this.checked){
-			$('tbody :checkbox').attr('checked',true);
-		}else{
-			$('tbody :checkbox').attr('checked',false);
-		}
-	});
-    
-	$('tbody :checkbox').click(function(){
-		
-		var checkArry = document.getElementsByName("subBox");
-		for (var i = 0; i < checkArry.length; i++) {
-	        if(checkArry[i].checked == false){
-	            $('#CheckAll').attr('checked',false);
-	            return;
-	        }
-   		}
-		$('#CheckAll').attr('checked',true);
-
-	});
 
     $('#uploadFile').on('filebatchuploadcomplete', function(event, files, extra) {
     	$("#uploadModal").find(".modal-footer").find(".btn").text("确定");
