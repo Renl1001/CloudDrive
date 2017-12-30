@@ -78,7 +78,7 @@ public class UpLoadServlet extends HttpServlet {
 						continue;
 					}
 					// 处理获取到的上传文件的文件名的路径部分，只保留文件名部分
-					fileName = fileName.substring(fileName.lastIndexOf("\\")+1);
+					fileName = fileName.substring(fileName.lastIndexOf("/")+1);
 					
 					// 添加UUID
 					String uuidName = makeFileName(fileName);
@@ -91,7 +91,7 @@ public class UpLoadServlet extends HttpServlet {
 						folder.mkdirs();
 					}
 					InputStream in = item.getInputStream();
-					FileOutputStream out = new FileOutputStream(savePath+"\\"+uuidName);
+					FileOutputStream out = new FileOutputStream(savePath+"/"+uuidName);
 					byte buffer[] = new byte[1024];
 					int len = 0;
 					while((len=in.read(buffer)) > 0) {

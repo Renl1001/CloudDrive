@@ -85,6 +85,9 @@
 	</nav>
 	
 	<div class="container">
+		<div class="topsharetitle">
+		Top 12 hot shares
+		</div>
 		<div class="row">
 			<c:forEach var="share" items="${shares}">
 				<div class="card-container col-sm-4">

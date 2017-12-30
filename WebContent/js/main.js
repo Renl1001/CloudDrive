@@ -14,16 +14,7 @@ $(function () {
         maxFileSize: 0,
         maxFileCount: 10
     });
-
     
-
-    $("#CheckAll").click(function () {
-        if (this.checked)
-            $(':checkbox').attr('checked', true);
-        else
-            $(':checkbox').attr('checked', false);
-    });
-
     $("tbody tr").bind({
         mouseover: function () {
             $(this).find(".disabled").show();
@@ -33,6 +24,27 @@ $(function () {
         }
     });
     
+    $('#CheckAll').click(function(){
+		if(this.checked){
+			$('tbody :checkbox').attr('checked',true);
+		}else{
+			$('tbody :checkbox').attr('checked',false);
+		}
+	});
+    
+	$('tbody :checkbox').click(function(){
+		
+		var checkArry = document.getElementsByName("subBox");
+		for (var i = 0; i < checkArry.length; i++) {
+	        if(checkArry[i].checked == false){
+	            $('#CheckAll').attr('checked',false);
+	            return;
+	        }
+   		}
+		$('#CheckAll').attr('checked',true);
+
+	});
+
     $('#uploadFile').on('filebatchuploadcomplete', function(event, files, extra) {
     	$("#uploadModal").find(".modal-footer").find(".btn").text("确定");
         console.log('File batch upload complete');
