@@ -86,7 +86,7 @@
 						${name }
 					</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="/CloudDrive/DoLogout">退出登录</a>
+						<a class="dropdown-item" href="DoLogout">退出登录</a>
 					</div>
 				</li>
 			</ul>
