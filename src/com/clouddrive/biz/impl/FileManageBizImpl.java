@@ -15,7 +15,7 @@ public class FileManageBizImpl implements FileManageBiz {
 	
 	@Override
 	public boolean delFile(String path, String uuidName) {
-		String url = path + "\\" + uuidName;
+		String url = path + "/" + uuidName;
 		File file = new File(url);
 		if (!file.exists()) {
 			// 文件不存在
@@ -50,8 +50,8 @@ public class FileManageBizImpl implements FileManageBiz {
             // 目录此时为空，可以删除
             String url = dir.getPath();
 //            System.out.println("url:"+url);
-            String path = url.substring(0, url.lastIndexOf("\\"));
-            String fileName = url.substring(url.lastIndexOf("\\")+1);
+            String path = url.substring(0, url.lastIndexOf("/"));
+            String fileName = url.substring(url.lastIndexOf("/")+1);
             fileDaoImpl.delFolder(path, fileName);
             return dir.delete();
         } 
@@ -74,7 +74,7 @@ public class FileManageBizImpl implements FileManageBiz {
 			System.out.println(savePath + "目录不存在，需要创建");
 			folder.mkdirs();
 		}
-		File newFolder = new File(savePath+"\\"+fileName);
+		File newFolder = new File(savePath+"/"+fileName);
 		newFolder.mkdirs();
 		String type = "folder";
 		Date date = new Date();
