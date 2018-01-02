@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 		System.out.println("password:"+pwd);
 		
 		LoginBizImpl loginBiz = new LoginBizImpl();
-		User user = loginBiz.login(userName, pwd);
+		User user = loginBiz.login(userName, User.md5Password(pwd));
 		
 		if(user == null) {
 			req.setAttribute("message", "用户名或密码错误！");

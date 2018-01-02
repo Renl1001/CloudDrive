@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.clouddrive.biz.impl.RegisterBizImpl;
+import com.clouddrive.entity.User;
+
+import sun.nio.cs.ext.DoubleByte.Encoder_DBCSONLY;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -31,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
 		System.out.println("password:"+pwd);
 		
 		RegisterBizImpl registerBizImpl = new RegisterBizImpl();
-		if(registerBizImpl.register(userName, pwd)){
+		if(registerBizImpl.register(userName, User.md5Password(pwd))){
 			HttpSession session = req.getSession();
 			session.setAttribute("name", userName);
 			resp.sendRedirect("ListFiles");
