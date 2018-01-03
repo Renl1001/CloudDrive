@@ -7,27 +7,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>CloudDrive</title>
-
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
- 	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script> 
-	<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-
-	<link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="themes/fa/theme.min.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-
-	<script src="js/fileinput.min.js" type="text/javascript"></script>
-	<script src="themes/fa/theme.min.js" type="text/javascript"></script>
-	<script src="js/locales/zh.js" type="text/javascript"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/ajax.js"></script>
 	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+	<!-- Font Awesome -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
+	<script src="themes/fa/theme.js" type="text/javascript"></script>
+	<!--  -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/checkbox.css">
+   	<script src="js/mkfoldercheck.js" type="text/javascript"></script>
 	<script src="js/signupcheck.js" type="text/javascript"></script>
 	<script src="js/logincheck.js" type="text/javascript"></script>
-	<script src="js/main.js" type="text/javascript"></script>
-	<!-- <script type="text/javascript">
-		
-	</script> -->
+	<script src="js/home.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -98,7 +94,7 @@
 								<div class="col-xl-3"></div>
 								<div class="col-xl-6" >
 									<img  class="home_icon" src="img/icon/${share.type }.png" > 
-								</div>	
+								</div>
 							</div>
 							<div class="row">
 								<!-- <div class="col-sm-1"></div> -->

@@ -2,33 +2,33 @@
 	pageEncoding="UTF-8"%>
 
 <%@ page import="java.util.*"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!-- test -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>CloudDrive</title>
-	
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-
 	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/clipboard.min.js"></script>
 	<script src="js/ajax.js"></script>
-
-    <script src="js/fileinput.min.js" type="text/javascript"></script>
-    <script src="themes/fa/theme.js" type="text/javascript"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/main.js" type="text/javascript"></script>
-	<script src="js/locales/zh.js" type="text/javascript"></script>
 	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+	<!-- fileinput -->
+	<link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+	<script src="js/fileinput.min.js" type="text/javascript"></script>
+	<script src="js/locales/zh.js" type="text/javascript"></script>
+	<!-- Font Awesome -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
+	<script src="themes/fa/theme.js" type="text/javascript"></script>
+	<!-- clipboard -->
+	<script src="js/clipboard.min.js"></script>
+	<!--  -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/checkbox.css">
+	<script src="js/checkbox.js" type="text/javascript"></script>
    	<script src="js/drive.js" type="text/javascript"></script>
    	<script src="js/mkfoldercheck.js" type="text/javascript"></script>
    	<script type="text/javascript">
@@ -84,12 +84,12 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group" id="sidebar">
-					<a href="ListFiles?path=root" class="list-group-item root" ><i class="fa fa-home"></i> &nbsp&nbsp全部文件</a>
-					<a href="ListFiles?path=image" class="list-group-item image"><i class="fa fa-photo"></i> &nbsp&nbsp图片</a>
-					<a href="ListFiles?path=document" class="list-group-item document"><i class="fa fa-file-text-o"></i> &nbsp&nbsp文档</a>
-					<a href="ListFiles?path=video" class="list-group-item video"><i class="fa fa-film"></i> &nbsp&nbsp视频</a>
-					<a href="ListFiles?path=music" class="list-group-item music"><i class="fa fa-music"></i> &nbsp&nbsp音乐</a>
-					<a href="ListFiles?path=other" class="list-group-item other"><i class="fa fa-sticky-note-o"></i> &nbsp&nbsp其他</a>
+					<a href="ListFiles?path=root" class="list-group-item root" ><i class="fa fa-home"></i> 全部文件</a>
+					<a href="ListFiles?path=image" class="list-group-item image"><i class="fa fa-photo"></i> 图片</a>
+					<a href="ListFiles?path=document" class="list-group-item document"><i class="fa fa-file-text-o"></i> 文档</a>
+					<a href="ListFiles?path=video" class="list-group-item video"><i class="fa fa-film"></i> 视频</a>
+					<a href="ListFiles?path=music" class="list-group-item music"><i class="fa fa-music"></i> 音乐</a>
+					<a href="ListFiles?path=other" class="list-group-item other"><i class="fa fa-sticky-note-o"></i> 其他</a>
 				</div>
 			</div>
 			<div class="card col-sm-10">
@@ -138,7 +138,12 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th><input id="CheckAll" type="checkbox" /></th>
+								<th>
+									<div class="main-checkbox">
+										<input type="checkbox" value="None" id="CheckAll" name="check"/>
+										<label for="CheckAll"></label>
+									</div>
+								</th>
 								<th>文件名</th>
 								<th>  </th>
 								<th>大小</th>
@@ -148,7 +153,12 @@
 						<tbody>
 							<c:forEach var="file" items="${files}">
 								<tr>
-									<td><input name="subBox" type="checkbox" /></td>
+									<td>
+										<div class="main-checkbox">
+											<input type="checkbox" value="None" id="check1" name="subBox"/>
+											<label for="check1"></label>
+										</div>
+									</td>
 									<c:choose>
 										<c:when test="${file.type == \"folder\" }">
 											<c:url value="/ListFiles" var="folderURL">

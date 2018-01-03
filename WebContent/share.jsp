@@ -4,23 +4,21 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<title>CloudDrive</title>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/ajax.js"></script>
+	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+	<!-- bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-
-    <script src="js/jquery-3.2.1.min.js"></script>
-
-    <script src="js/fileinput.min.js" type="text/javascript"></script>
-    <script src="themes/fa/theme.js" type="text/javascript"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/main.js" type="text/javascript"></script>
-	<script src="js/locales/zh.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		
-	</script>
+	<!-- Font Awesome -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
+	<script src="themes/fa/theme.js" type="text/javascript"></script>
+	<!-- clipboard -->
+	<script src="js/clipboard.min.js"></script>
+	<!--  -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-sm main-navigation">
