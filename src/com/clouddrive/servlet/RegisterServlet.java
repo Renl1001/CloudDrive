@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSession;
 import com.clouddrive.biz.impl.RegisterBizImpl;
 import com.clouddrive.entity.User;
 
-import sun.nio.cs.ext.DoubleByte.Encoder_DBCSONLY;
-
 /**
  * Servlet implementation class RegisterServlet
  */

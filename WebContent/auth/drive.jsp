@@ -151,12 +151,14 @@
 							</tr>
 						</thead>
 						<tbody>
+							<c:set var="index" value="0" />
 							<c:forEach var="file" items="${files}">
+								<c:set var="index" value="${index+1}" />
 								<tr>
 									<td>
 										<div class="main-checkbox">
-											<input type="checkbox" value="None" id="check1" name="subBox"/>
-											<label for="check1"></label>
+											<input type="checkbox" value="None" id="check${index }" name="subBox"/>
+											<label for="check${index }"></label>
 										</div>
 									</td>
 									<c:choose>

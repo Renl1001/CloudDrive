@@ -13,6 +13,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+	<!-- fileinput -->
+	<link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+	<script src="js/fileinput.min.js" type="text/javascript"></script>
+	<script src="js/locales/zh.js" type="text/javascript"></script>
 	<!-- Font Awesome -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
 	<script src="themes/fa/theme.js" type="text/javascript"></script>
@@ -72,7 +76,12 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th><input id="CheckAll" type="checkbox" /></th>
+									<th>
+										<div class="main-checkbox">
+											<input type="checkbox" value="None" id="CheckAll" name="check"/>
+											<label for="CheckAll"></label>
+										</div>
+									</th>
 									<th>文件名</th>
 									<th>  </th>
 									<th>大小</th>
@@ -80,9 +89,16 @@
 								</tr>
 							</thead>
 							<tbody>
+								<c:set var="index" value="0" />
 								<c:forEach var="file" items="${files}">
+									<c:set var="index" value="${index+1}" />
 									<tr>
-										<td><input name="subBox" type="checkbox" /></td>
+										<td>
+											<div class="main-checkbox">
+												<input type="checkbox" value="None" id="check${index }" name="subBox"/>
+												<label for="check${index }"></label>
+											</div>
+										</td>
 										<c:url value="/DownLoad" var="downLoadURL">
 											<c:param name="fileName" value="${file.uuidName}"></c:param>
 											<c:param name="path" value="${file.path }"></c:param>
