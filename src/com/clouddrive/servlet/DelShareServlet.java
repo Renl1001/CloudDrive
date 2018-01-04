@@ -1,6 +1,7 @@
 package com.clouddrive.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.clouddrive.biz.impl.ShareManageBizImpl;
+
+import net.sf.json.JSONObject;
 
 /**
  * Servlet implementation class delShareServlet
@@ -25,14 +28,22 @@ public class DelShareServlet extends HttpServlet {
 		
 		System.out.println("DelShareServlet");
 		
-		String key = req.getParameter("key");
-		
+		String[] keys = req.getParameterValues("keys");
 		ShareManageBizImpl shareManage = new ShareManageBizImpl();
-		if(shareManage.delShareByKey(key)) {
-			// 删除成功
+		if(keys != null) {
+			for(String key:keys) {
+				shareManage.delShareByKey(key);
+			}
+		} else {
+			String key = req.getParameter("key");
+			shareManage.delShareByKey(key);
 		}
-		
-		resp.sendRedirect("ShareManage");
+		JSONObject json = new JSONObject();
+		json.put("success", "删除成功");
+		resp.setCharacterEncoding("UTF-8");
+		PrintWriter out = resp.getWriter();
+		out.println(json);
+		out.close();
 	}
 
 	/**

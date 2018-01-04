@@ -15,12 +15,12 @@ $(function() {
     });
     $('#uploadModal').on("hide.bs.modal", function() {
     	if($("#uploadModal").find(".modal-footer").find(".btn").text() == "确定") {
-    		window.location.href="ListFiles";
+    		window.location.reload();
     	}
     });
 
     $("#shareModal").on("hide.bs.modal", function() {
-    	window.location.href="ListFiles";
+    	window.location.reload();
     });
 
     $(".share").click(function() {
@@ -34,8 +34,32 @@ $(function() {
     clipboard.on('error', function(e) {
         $("#copyError").show();
     });
+    
+    $("#confirmDeletion").click(function() {
+    	var fileNames = new Array();
+    	var paths = new Array();
+    	$("tbody input[type='checkbox']:checked").each(function(){
+    	    fileNames.push($(this).parent().parent().parent().find(".param .fileName").text());
+    	    paths.push($(this).parent().parent().parent().find(".param .path").text());
+    	});	
+    	$.ajax({  
+    	    url: 'DelFile',  
+    	    data: {
+    	    	"fileName": fileNames,
+   	    		"path": paths
+    	    },  
+    	    dataType: "json",  
+    	    type: "POST",  
+    	    traditional: true,  
+    	    success: handleDelFiles 
+    	});  
+    });
 });
 function handleShowLink(data) {
     $("#linkText").val(data);
     $("#shareModal").modal("show");
 };
+
+function handleDelFiles(data) {
+	window.location.reload();
+}

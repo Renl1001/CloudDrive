@@ -68,11 +68,21 @@
 			<div class="card-body">
 				<c:choose>
 					<c:when test="${empty inboxBaseURL }">
-						<ul class="breadcrumb">
-							<a href="InboxManage">收件夹</a>
-							<span class="gt">></span>
-							${path }
-						</ul>
+						<div class="row">
+							<ul class="breadcrumb col-sm-9">
+								<a href="InboxManage">收件夹</a>
+								<span class="gt"> > </span>
+								${path }
+							</ul>
+							<div id="menudiv" class="col-sm-3">
+								<button type="button" class="btn btn-primary checkShow" data-toggle="modal" data-target="#uploadModal">
+									<i class="fa fa-cloud-download"></i> 下载
+								</button>
+								<button type="button" class="btn btn-outline-danger checkShow" data-toggle="modal" data-target="#delInfoModal">
+									<i class="fa fa-trash-o fa-lg"></i> 删除
+								</button>
+							</div>
+						</div>
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -99,22 +109,14 @@
 												<label for="check${index }"></label>
 											</div>
 										</td>
-										<c:url value="/DownLoad" var="downLoadURL">
-											<c:param name="fileName" value="${file.uuidName}"></c:param>
-											<c:param name="path" value="${file.path }"></c:param>
-										</c:url>
-										<c:url value="/DelFile" var="delURL">
-											<c:param name="fileName" value="${file.uuidName}"></c:param>
-											<c:param name="path" value="${file.path }"></c:param>
-										</c:url>
 										<td>
 											<img src="img/icon/${file.type }.png" alt="logo" class="fileIcon">
 											<a href="${downLoadURL}" class="fileName">${file.fileName}</a>
 										</td>
 										<td>
-											<div class="disabled">
-												<a href="${downLoadURL }" title="下载"><i class="fa fa-download fa-lg"></i></a>  
-												<a href="${delURL }" title="删除" ><i class="fa fa-trash-o fa-lg"></i></a>
+											<div class="param">
+												<span class="fileName">${file.uuidName}</span>
+												<span class="path">${file.path }</span>
 											</div>
 										</td>
 										<td>${file.showSize }</td>
@@ -138,11 +140,7 @@
 							</thead>
 							<tbody>
 								<c:forEach var="inbox" items="${inboxs}">
-									<tr>								
-										<c:url value="DelInbox" var="delURL">
-											<c:param name="key" value="${inbox.key}"></c:param>
-											<c:param name="inboxName" value="${inbox.uuidName}"></c:param>
-										</c:url>
+									<tr>
 										<td>
 											<img src="img/icon/folder.png" alt="logo" class="fileIcon">
 											<a href="InboxManage?path=inbox/${inbox.inboxName }" class="fileName">${inbox.inboxName }</a>
@@ -150,7 +148,11 @@
 										<td>
 											<a href="#" title="收件地址" data-toggle="popover" data-placement="left" data-content="${inboxBaseURL }?key=${inbox.key }"><i class="fa fa-link fa-lg"></i></a>
 											&nbsp&nbsp
-											<a href="${delURL }" title="删除收件夹"><i class="fa fa-trash-o fa-lg"></i></a>
+											<a href="javascript:void(0);" title="删除收件夹" class="delInbox"><i class="fa fa-trash-o fa-lg"></i></a>
+											<div class="param">
+												<span class="key">${inbox.key}</span>
+												<span class="inboxName">${inbox.uuidName}</span>
+											</div>
 										</td>
 										<td>${inbox.startTime }</td>
 									</tr>
@@ -234,6 +236,52 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline-primary" data-dismiss="modal" >关闭</button>
 				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 删除提示信息 -->
+	<div class="modal fade" id="delInfoModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">删除文件</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+			
+				<div class="modal-body">
+					<i class="fa fa-info-circle"></i> 确定删除选中文件？
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" id="confirmDeletion">删除</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 删除收件夹提示信息 -->
+	<div class="modal fade" id="delInboxModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="DelInbox" method="post">
+					<div class="modal-header">
+						<h4 class="modal-title">删除收件夹</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+				
+					<div class="modal-body">
+						<i class="fa fa-info-circle"></i> 删除收件夹后，收件内容也会丢失，确定继续删除？
+						<div class="disabled">
+							<input type="text" name="key" id="subkey" />
+							<input type="text" name="inboxName" id="subInboxName" />
+						</div>
+					</div>
+	
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-danger">删除</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -29,6 +29,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/checkbox.css">
 	<script src="js/checkbox.js" type="text/javascript"></script>
+	<script src="js/myShare.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -69,6 +70,17 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-10">
+						<h4>我的分享</h4>
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-outline-warning checkShow" data-toggle="modal" data-target="#delInfoModal">
+							<i class="fa fa-ban fa-lg"></i> 取消分享
+						</button>
+					</div>
+				</div>
+				
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -79,7 +91,7 @@
 								</div>
 							</th>
 							<th>文件名</th>
-							<th>  </th>
+							<th> </th>
 							<th>下载次数</th>
 							<th>大小</th>
 							<th>分享时间</th>
@@ -96,17 +108,14 @@
 										<label for="check${index }"></label>
 									</div>
 								</td>								
-								<c:url value="DelShare" var="delURL">
-									<c:param name="key" value="${share.key}"></c:param>
-								</c:url>
 								<td>
 									<img src="img/icon/${share.type }.png" alt="logo" class="fileIcon">
 									<a href="Share?key=${share.key }" target="_blank" class="fileName">${share.fileName}</a>&nbsp&nbsp
 								</td>
 								<td>
-									<div class="disabled">
-										<a href="${delURL }" title="取消分享"><i class="fa fa-ban fa-lg"></i></a>
-									</div>  
+									<div class="param">
+										<span class="key">${share.key}</span>
+									</div>
 								</td>
 								<td>${share.downloads }</td>
 								<td>${share.showSize }</td>
@@ -118,6 +127,25 @@
 			</div>
 		</div>
 	</div>
-	
+	<!-- 提示信息 -->
+	<div class="modal fade" id="delInfoModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">取消分享</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+			
+				<div class="modal-body">
+					<i class="fa fa-info-circle"></i> 确定取消选中文件？
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" id="confirmDeletion">确定</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

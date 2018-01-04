@@ -38,7 +38,35 @@ $(function () {
         $("#copyError").show();
     });
     $('[data-toggle="popover"]').popover();   
+
+    $("#confirmDeletion").click(function() {
+    	var fileNames = new Array();
+    	var paths = new Array();
+    	$("tbody input[type='checkbox']:checked").each(function(){
+    	    fileNames.push($(this).parent().parent().parent().find(".param .fileName").text());
+    	    paths.push($(this).parent().parent().parent().find(".param .path").text());
+    	});	
+    	$.ajax({  
+    	    url: 'DelFile',  
+    	    data: {
+    	    	"fileName": fileNames,
+   	    		"path": paths
+    	    },  
+    	    dataType: "json",  
+    	    type: "POST",  
+    	    traditional: true,  
+    	    success: handleDelFiles 
+    	});  
+    });
+    $(".delInbox").click(function() {
+    	var key = $(this).next().find(".key").text();
+    	var inboxName = $(this).next().find(".inboxName").text();
+    	$("#subkey").val(key);
+    	$("#subInboxName").val(inboxName);
+    	$("#delInboxModal").modal("show");
+    });
 });
+
 function handleShowLink(results) {
 	var json = jQuery.parseJSON(results); 
 	if(json.message != null) {
@@ -50,3 +78,7 @@ function handleShowLink(results) {
 	    $("#inboxLinkModal").modal("show");
 	}
 };
+
+function handleDelFiles(data) {
+	window.location.reload();
+}

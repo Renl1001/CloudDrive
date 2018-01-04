@@ -1,6 +1,7 @@
 package com.clouddrive.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.clouddrive.biz.impl.FileManageBizImpl;
+
+import net.sf.json.JSONObject;
 
 /**
  * Servlet implementation class DelFile
@@ -25,17 +28,24 @@ public class DelFileServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
 		String userName = (String)session.getAttribute("name");
-		String uuidName = req.getParameter("fileName");
-		String path = req.getParameter("path");
+		String uuidNames[] = req.getParameterValues("fileName");
+		String paths[] = req.getParameterValues("path");
 		System.out.println("delFileServlet:");
-		String url = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path+"/"+uuidName);
-		FileManageBizImpl fileManage = new FileManageBizImpl();
-		if(fileManage.delFile(url, path)) {
-			// 删除成功
-			System.out.println("删除成功");
+		for(int i = 0; i < paths.length; i++) {
+			String path = paths[i];
+			String url = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path+"/"+uuidNames[i]);
+			FileManageBizImpl fileManage = new FileManageBizImpl();
+			if(fileManage.delFile(url, path)) {
+				// 删除成功
+				System.out.println("删除成功");
+			}
 		}
-		
-		resp.sendRedirect("ListFiles");
+		JSONObject json = new JSONObject();
+		json.put("success", "删除成功");
+		resp.setCharacterEncoding("UTF-8");
+		PrintWriter out = resp.getWriter();
+		out.println(json);
+		out.close();
 	}
 
 	/**

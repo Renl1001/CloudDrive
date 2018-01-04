@@ -35,7 +35,6 @@
    	$(function() {
    	    $("#sidebar").children().each(function() {
    	        if($(this).hasClass("${path }")) {
-   	            //$("#sidebar .root").removeClass("list-group-item-primary");
    	            $(this).addClass("bg-primary text-white");
    	        } else {
    	            $(this).addClass("list-group-item-action");
@@ -107,6 +106,9 @@
 								<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#newFolder">
 									<i class="fa fa-folder-o fa-lg"></i> 新建文件夹
 								</button>
+								<button type="button" class="btn btn-outline-danger checkShow" data-toggle="modal" data-target="#delInfoModal">
+									<i class="fa fa-trash-o fa-lg"></i> 删除
+								</button>
 							</div>
 							<ul class="breadcrumb">
 								<c:if test="${lastPath != \"\"}">
@@ -171,12 +173,9 @@
 												<a href="${folderURL}" class="fileName">${file.fileName}</a>
 											</td>
 											<td>
-												<c:url value="/DelFile" var="delURL">
-													<c:param name="fileName" value="${file.fileName}"></c:param>
-													<c:param name="path" value="${file.path }"></c:param>
-												</c:url>
-												<div class="disabled">
-													<a href="${delURL }" title="删除" ><i class="fa fa-trash-o fa-lg"></i></a>
+												<div class="param">
+													<span class="fileName">${file.fileName}</span>
+													<span class="path">${file.path }</span>
 												</div>
 											</td>
 											<td>-</td>
@@ -191,19 +190,18 @@
 												<c:param name="path" value="${path }"></c:param>
 												<c:param name="size">${file.size }</c:param>
 											</c:url>
-											<c:url value="/DelFile" var="delURL">
-												<c:param name="fileName" value="${file.uuidName}"></c:param>
-												<c:param name="path" value="${file.path }"></c:param>
-											</c:url>
 											<td>
 												<img src="img/icon/${file.type }.png" alt="logo" class="fileIcon">
 												<a href="${downLoadURL}" class="fileName">${file.fileName}</a>
 											</td>
 											<td>
+												<div class="param">
+													<span class="fileName">${file.uuidName}</span>
+													<span class="path">${file.path }</span>
+												</div>
 												<div class="disabled">
 													<a href="${downLoadURL }" title="下载"><i class="fa fa-download fa-lg"></i></a>  
 													<a href="javascript:void(0);" class="share" url="${shareURL }" title="分享"><i class="fa fa-share-alt fa-lg"></i></a>
-													<a href="${delURL }" title="删除" ><i class="fa fa-trash-o fa-lg"></i></a>
 												</div>
 											</td>
 											<td>${file.showSize }</td>
@@ -304,6 +302,26 @@
 				<!-- 模态框底部 -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline-primary" data-dismiss="modal" >关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 删除提示信息 -->
+	<div class="modal fade" id="delInfoModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">删除文件</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+			
+				<div class="modal-body">
+					<i class="fa fa-info-circle"></i> 确定删除选中文件？
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" id="confirmDeletion">删除</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
 				</div>
 			</div>
 		</div>

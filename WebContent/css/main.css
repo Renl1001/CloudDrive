@@ -182,6 +182,18 @@ img.logo {
 	display:none;
 }
 
+.checkShow {
+    display: none;
+}
+
 table td{
 	vertical-align: middle;
+}
+
+#sidebar i {
+	margin-right: 10px;
+}
+
+.param{
+	display: none;
 }
