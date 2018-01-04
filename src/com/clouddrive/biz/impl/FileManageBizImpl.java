@@ -14,8 +14,7 @@ public class FileManageBizImpl implements FileManageBiz {
 	ShareManageBizImpl shareManage = new ShareManageBizImpl();
 	
 	@Override
-	public boolean delFile(String path, String uuidName) {
-		String url = path + "/" + uuidName;
+	public boolean delFile(String url, String path) {
 		File file = new File(url);
 		if (!file.exists()) {
 			// 文件不存在
@@ -24,7 +23,7 @@ public class FileManageBizImpl implements FileManageBiz {
 		if (file.isDirectory()) {
 			// 如果是文件夹
 			System.out.println("删除文件夹");
-			boolean d = deleteDir(file);
+			boolean d = deleteDir(file, path);
 			if(!d) {
 				System.out.println("删除失败！");
 				return false;
@@ -37,12 +36,12 @@ public class FileManageBizImpl implements FileManageBiz {
 	}
 
 	// 递归删除文件夹
-	private boolean deleteDir(File dir) {
+	private boolean deleteDir(File dir, String path) {
         if (dir.isDirectory()) {
             String[] children = dir.list();
             //递归删除目录中的子目录下
             for (int i=0; i<children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
+                boolean success = deleteDir(new File(dir, children[i]),path+"/"+dir.getName());
                 if (!success) {
                     return false;
                 }
@@ -50,11 +49,9 @@ public class FileManageBizImpl implements FileManageBiz {
             // 目录此时为空，可以删除
             String url = dir.getPath();
             System.out.println(url);
-//            System.out.println("url:"+url);
             String fileName = dir.getName();
-            String path = url.substring(0, url.lastIndexOf(fileName)-1);
-            System.out.println("fileName"+fileName);
-            System.out.println("path"+path);
+            System.out.println("fileName:"+fileName);
+            System.out.println("path:"+path);
             fileDaoImpl.delFolder(path, fileName);
             return dir.delete();
         } 

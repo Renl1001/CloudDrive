@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.clouddrive.dao.impl.ShareDaoImpl;
 
@@ -18,20 +19,23 @@ public class DownLoadServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		HttpSession session = req.getSession();
+		String userName = (String)session.getAttribute("name");
 		String fileName = req.getParameter("fileName");
 		String path = req.getParameter("path");
 		String url = req.getParameter("url");
 		
 		if(url == null) {
 			// 下载文件
-			url = path+"/"+fileName;
+			url = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path+"/"+fileName);
 		} else {
 			System.out.println("下载分享文件");
+			url = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+url+"/"+fileName);
 			String key = req.getParameter("key");
 			ShareDaoImpl shareDaoImpl = new ShareDaoImpl();
 			shareDaoImpl.updateDownloadByKey(key);
 		}
-		System.out.println("url" + url);
+		System.out.println("url:" + url);
 		File file = new File(url);
 		if(!file.exists()) {
 			req.setAttribute("message", "资源已被删除");

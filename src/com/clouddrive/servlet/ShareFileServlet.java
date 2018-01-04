@@ -22,23 +22,20 @@ public class ShareFileServlet extends HttpServlet {
 		String uuidName = req.getParameter("fileName");
 		String path = req.getParameter("path");
 		long size = Long.parseLong(req.getParameter("size"));
-		String url = this.getServletContext().getRealPath("/WEB-INF/Drive/" + userName + "/" + path + "/" + uuidName);
+//		String url = this.getServletContext().getRealPath("/WEB-INF/Drive/" + userName + "/" + path + "/" + uuidName);
 
 		System.out.println("ShareFile");
 
 		ShareManageBizImpl shareManage = new ShareManageBizImpl();
-		String key = shareManage.insertShare(userName, uuidName, url, size);
+		String key = shareManage.insertShare(userName, uuidName, path, size);
 		String link = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath()
 				+ "/Share" + "?key=" + key;
 		
 //		JSONObject json = new JSONObject();
-		
-		
 		System.out.println(link);
 		PrintWriter out = resp.getWriter();
 		out.write(link);
 		out.close();
-
 	}
 
 	@Override

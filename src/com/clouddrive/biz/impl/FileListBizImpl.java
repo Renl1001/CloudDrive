@@ -42,9 +42,9 @@ public class FileListBizImpl implements FileListBiz {
 	}
 
 	@Override
-	public Vector<FileMessage> getFilesByPath(String path) {
+	public Vector<FileMessage> getFilesByPathAndUser(String path, String userName) {
 		FileDaoImpl fileDaoImpl = new FileDaoImpl();
-		Vector<FileMessage> files = fileDaoImpl.findFilesByPath(path); 
+		Vector<FileMessage> files = fileDaoImpl.findFilesByPathAndUser(path, userName); 
 		return files;
 	}
 

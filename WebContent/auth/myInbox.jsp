@@ -141,7 +141,7 @@
 									<tr>								
 										<c:url value="DelInbox" var="delURL">
 											<c:param name="key" value="${inbox.key}"></c:param>
-											<c:param name="path" value="${inbox.path}"></c:param>
+											<c:param name="inboxName" value="${inbox.uuidName}"></c:param>
 										</c:url>
 										<td>
 											<img src="img/icon/folder.png" alt="logo" class="fileIcon">

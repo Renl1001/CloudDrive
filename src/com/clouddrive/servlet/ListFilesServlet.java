@@ -57,9 +57,9 @@ public class ListFilesServlet extends HttpServlet {
 			return ;
 		}
 		
-		String uploadFilePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
+//		String uploadFilePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
 		// 通过路径获取fileList
-		files = fileListBizImpl.getFilesByPath(uploadFilePath); 
+		files = fileListBizImpl.getFilesByPathAndUser(path, userName); 
 		
 		Map<String, String> paths = fileListBizImpl.getPaths(path);
 		String lastPath = fileListBizImpl.getLastPath(path);

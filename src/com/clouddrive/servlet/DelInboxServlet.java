@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.clouddrive.biz.impl.InboxBizImpl;
 
@@ -22,10 +23,13 @@ public class DelInboxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		HttpSession session = req.getSession();
+		String userName = (String)session.getAttribute("name");
 		String key = req.getParameter("key");
-		String path = req.getParameter("path");
-		System.out.println("delFileServlet:");
+		String fileName = req.getParameter("inboxName");
 		
+		System.out.println("delFileServlet:");
+		String path = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/inbox/"+fileName);
 		InboxBizImpl inboxBizImpl = new InboxBizImpl();
 		if(inboxBizImpl.delInbox(path, key)) {
 			// 删除成功

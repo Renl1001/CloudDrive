@@ -12,9 +12,9 @@ import com.clouddrive.entity.FileMessage;
 public class FileDaoImpl extends BaseDao implements FileDao {
 
 	@Override
-	public Vector<FileMessage> findFilesByPath(String path) {
-		String sql = "select * from file where path = ? order by updateTime desc";
-		Object[] params = { path };
+	public Vector<FileMessage> findFilesByPathAndUser(String path, String userName) {
+		String sql = "select * from file where path = ? and user = ? order by updateTime desc";
+		Object[] params = { path, userName };
 
 		RSProcessor getUsersByNameProcessor = new RSProcessor() {
 

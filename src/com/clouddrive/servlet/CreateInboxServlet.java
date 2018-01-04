@@ -53,7 +53,7 @@ public class CreateInboxServlet extends HttpServlet {
 		System.out.println("MkInbox:");
 
 		InboxManageBizImpl inboxManageBizImpl = new InboxManageBizImpl();				
-		String key = inboxManageBizImpl.insertInbox(userName, inboxName, path, illustrate);
+		String key = inboxManageBizImpl.insertInbox(userName, inboxName, illustrate);
 		String link = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath()
 				+ "/Inbox" + "?key=" + key;
 		

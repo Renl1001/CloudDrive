@@ -4,18 +4,16 @@ public class Inbox {
 	private String user;
 	private String uuidName;
 	private String illustrate;
-	private String path;
 	private String startTime;
 	private String endTime;
 	private String key;
 	private String inboxName;
-	public Inbox(String user, String uuidName, String illustrate, String path, String startTime, String endTime, String key) {
+	public Inbox(String user, String uuidName, String illustrate, String startTime, String endTime, String key) {
 		super();
 		this.user = user;
 		this.uuidName = uuidName;
 		this.illustrate = illustrate;
 		this.inboxName = uuidName.substring(uuidName.indexOf("_")+1);
-		this.path = path;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.key = key;
@@ -44,12 +42,6 @@ public class Inbox {
 	}
 	public void setUuidName(String uuidName) {
 		this.uuidName = uuidName;
-	}
-	public String getPath() {
-		return path;
-	}
-	public void setPath(String path) {
-		this.path = path;
 	}
 	public String getStartTime() {
 		return startTime;

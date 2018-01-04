@@ -72,11 +72,10 @@ public class InboxDaoImpl extends BaseDao implements InboxDao {
 						String user = rs.getString("user");
 						String uuidName = rs.getString("uuidName");
 						String illustrate = rs.getString("illustrate");
-						String path = rs.getString("path");
 						String startTime = rs.getString("startTime");
 						String endTime = rs.getString("endTime");
 						String key = rs.getString("keyword");
-						inbox = new Inbox(user, uuidName, illustrate, path, startTime, endTime, key);
+						inbox = new Inbox(user, uuidName, illustrate, startTime, endTime, key);
 					}
 				}
 
@@ -102,11 +101,10 @@ public class InboxDaoImpl extends BaseDao implements InboxDao {
 					String user = rs.getString("user");
 					String uuidName = rs.getString("uuidName");
 					String illustrate = rs.getString("illustrate");
-					String path = rs.getString("path");
 					String startTime = rs.getString("startTime");
 					String endTime = rs.getString("endTime");
 					String key = rs.getString("keyword");
-					Inbox inbox = new Inbox(user, uuidName, illustrate, path, startTime, endTime, key);
+					Inbox inbox = new Inbox(user, uuidName, illustrate, startTime, endTime, key);
 					inboxs.add(inbox);
 				}
 
@@ -120,8 +118,8 @@ public class InboxDaoImpl extends BaseDao implements InboxDao {
 
 	@Override
 	public int insert(Inbox inbox) {
-		String sql = "insert inbox (user, uuidName, illustrate, path, startTime, endTime, keyword) values(?,?,?,?,?,?,?)";
-		Object[] params = { inbox.getUser(), inbox.getUuidName(), inbox.getIllustrate(), inbox.getPath(), inbox.getStartTime(), inbox.getEndTime(), inbox.getKey() };
+		String sql = "insert inbox (user, uuidName, illustrate, startTime, endTime, keyword) values(?,?,?,?,?,?)";
+		Object[] params = { inbox.getUser(), inbox.getUuidName(), inbox.getIllustrate(), inbox.getStartTime(), inbox.getEndTime(), inbox.getKey() };
 		return this.executeUpdate(sql, params);
 	}
 

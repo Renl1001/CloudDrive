@@ -66,9 +66,9 @@ public class InboxListServlet extends HttpServlet {
 			// 业务逻辑
 			FileListBizImpl fileListBizImpl = new FileListBizImpl();
 			
-			String uploadFilePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
+//			String uploadFilePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
 			// 通过路径获取fileList
-			Vector<FileMessage> files = fileListBizImpl.getFilesByPath(uploadFilePath); 
+			Vector<FileMessage> files = fileListBizImpl.getFilesByPathAndUser(path, userName); 
 			
 			req.setAttribute("files", files);
 			req.setAttribute("path", path.substring(path.indexOf("/")+1));

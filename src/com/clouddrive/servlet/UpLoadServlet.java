@@ -96,7 +96,7 @@ public class UpLoadServlet extends HttpServlet {
 			// 添加UUID
 			String uuidName = makeFileName(fileName);
 			if(isInbox) {
-				userName = userName + "/inbox";
+				path = "inbox/"+path;
 			}
 			savePath = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path);
 			
@@ -122,7 +122,7 @@ public class UpLoadServlet extends HttpServlet {
 			String type = Type.getType(fileName);
 			
 			String updateTime = new CurrentTime().getDateString();
-			FileMessage fileMessage = new FileMessage(fileName, uuidName, updateTime, type, savePath, userName, fileSize);
+			FileMessage fileMessage = new FileMessage(fileName, uuidName, updateTime, type, path, userName, fileSize);
 			
 			FileDaoImpl fileDaoImpl = new FileDaoImpl();
 			fileDaoImpl.insert(fileMessage);
