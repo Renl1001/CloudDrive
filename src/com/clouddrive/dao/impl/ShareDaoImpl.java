@@ -72,6 +72,7 @@ public class ShareDaoImpl extends BaseDao implements ShareDao {
 		return this.executeUpdate(sql, params);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<Share> findShareByUser(String name) {
 		String sql = "select * from share where user = ? order by shareTime desc";
@@ -173,6 +174,7 @@ public class ShareDaoImpl extends BaseDao implements ShareDao {
 		return (String) this.executeQuery(getUserByNameProcessor, sql, params);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<Share> getHotShare() {
 		String sql = "select * from share order by downloads desc limit 12";

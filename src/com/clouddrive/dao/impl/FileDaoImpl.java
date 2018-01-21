@@ -11,6 +11,7 @@ import com.clouddrive.entity.FileMessage;
 
 public class FileDaoImpl extends BaseDao implements FileDao {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<FileMessage> findFilesByPathAndUser(String path, String userName) {
 		String sql = "select * from file where path = ? and user = ? order by updateTime desc";
@@ -49,6 +50,7 @@ public class FileDaoImpl extends BaseDao implements FileDao {
 		return this.executeUpdate(sql, params);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<FileMessage> findFilesByTypeAndUser(String type, String user) {
 		String sql = "select * from file where type = ? and user = ? order by updateTime desc";

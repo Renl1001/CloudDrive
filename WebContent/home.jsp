@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
 	<!-- Font Awesome -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
-	<script src="themes/fa/theme.js" type="text/javascript"></script>
+	<!-- <script src="themes/fa/theme.js" type="text/javascript"></script> -->
 	<!--  -->
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/checkbox.css">
@@ -50,16 +50,10 @@
 					<c:when test="${empty name }">
 						<!-- 未登录 -->
 						<li class="nav-item">
-							&nbsp&nbsp&nbsp
+							<button type="button" class="btn btn-primary nav-button" data-toggle="modal" data-target="#login">登录 </button>
 						</li>
 						<li class="nav-item">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">登录 </button>
-						</li>
-						<li class="nav-item">	
-							&nbsp&nbsp&nbsp
-						</li>
-						<li class="nav-item">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signup">注册 </button>
+							<button type="button" class="btn btn-primary nav-button" data-toggle="modal" data-target="#signup">注册 </button>
 						</li>
 					</c:when>
 					<c:otherwise>
@@ -104,7 +98,7 @@
 											文件名 
 										</div>
 										<div class="col-sm-9 ellipsis">
-											<a href="Share?key=${share.key }" target="_blank" class="fileName" title="${share.fileName}">${share.fileName}</a>&nbsp&nbsp
+											<a href="Share?key=${share.key }" target="_blank" class="fileName" title="${share.fileName}">${share.fileName}</a>
 										</div>
 									</div>
 									<div class="row">
@@ -144,9 +138,7 @@
 	<div class="modal fade" id="login">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<!-- 模态框头部 -->
 				<form class="form-horizontal" id="loginForm" method="post" action="DoLogin" role="form">
-					<!-- 模态框主体 -->
 				    <div class="row">
 				        <div class="col-md-offset-6 col-md-12">
 							<span class="heading">用户登录</span>
@@ -161,10 +153,10 @@
 							</div>
 							<div class="form-group">
 								<div class="main-checkbox">
-									<input type="checkbox" value="None" id="checkbox1" name="check"/>
+									<input type="checkbox" value="None" id="checkbox1" name="isSave"/>
 									<label for="checkbox1"></label>
 								</div>
-								<span class="text">记住我</span>
+								<span class="text">记住用户名</span>
 								<!--<button type="submit" class="btn btn-default">登录</button>-->
 							</div>
 				        </div>

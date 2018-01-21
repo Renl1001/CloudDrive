@@ -197,3 +197,7 @@ table td{
 .param{
 	display: none;
 }
+
+.nav-button {
+	margin-left: 15px;
+}

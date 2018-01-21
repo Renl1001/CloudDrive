@@ -87,6 +87,7 @@ public class InboxDaoImpl extends BaseDao implements InboxDao {
 		return (Inbox) this.executeQuery(getUserByNameProcessor, sql, params);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<Inbox> findInboxByUser(String name) {
 		String sql = "select * from inbox where user = ? order by startTime desc";
