@@ -30,6 +30,7 @@ public class DownLoadServlet extends HttpServlet {
 			url = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+path+"/"+fileName);
 		} else {
 			System.out.println("下载分享文件");
+			userName = req.getParameter("userName");
 			url = this.getServletContext().getRealPath("/WEB-INF/Drive/"+userName+"/"+url+"/"+fileName);
 			String key = req.getParameter("key");
 			ShareDaoImpl shareDaoImpl = new ShareDaoImpl();

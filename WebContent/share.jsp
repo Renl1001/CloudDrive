@@ -48,7 +48,7 @@
 						</c:when>
 						<c:otherwise>
 							<div class="container">
-								${share.user } 的分享
+								<h4>${share.user } 的分享</h4>
 							</div>
 							<table class="table table-hover">
 								<thead>
@@ -63,7 +63,7 @@
 									<tr>
 										<td>
 											<img src="img/icon/${share.type }.png" alt="logo" class="fileIcon">
-											<a href="${downLoadURL}" class="fileName">${share.fileName}</a>&nbsp&nbsp
+											<a href="${downLoadURL}" class="fileName">${share.fileName}</a>
 										</td>
 										<td>${share.showSize }</td>
 										<td>${share.shareTime }</td>
@@ -72,6 +72,7 @@
 												<c:param name="fileName" value="${share.uuidName}"></c:param>
 												<c:param name="url" value="${share.url }"></c:param>
 												<c:param name="key" value="${share.key }"></c:param>
+												<c:param name="userName" value="${share.user }"></c:param>
 											</c:url>
 											<a href="${downLoadURL}">
 												<button type="button" class="btn btn-outline-primary" id="downloadBtn">
