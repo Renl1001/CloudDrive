@@ -26,8 +26,7 @@ public class LogoutServlet extends HttpServlet {
 				}
 			}
 		}
-		session.removeAttribute("name");
-		session.removeAttribute("path");
+		session.invalidate();
 		resp.sendRedirect("Home");
 	}
 	
